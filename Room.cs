@@ -40,5 +40,15 @@ namespace CandideTextAdventure
             this.OnEnter();
         }
 
+        public virtual bool AttemptedExit()
+        {
+            return true;
+        }
+
+        public virtual bool AttemptedPickup(Item target)
+        {
+            return true;
+        }
+
     }
 }

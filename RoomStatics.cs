@@ -8,69 +8,10 @@ namespace CandideTextAdventure
     partial class Room
     {
         public static Room CurrentRoom = new Room();
-        public static void ParseInput(string input)
-        {
-            var split = input.ToLower().Split(' ');
-            if (split.Count() == 1)
-            {
-                if (split[0] == "examine" || split[0] == "look")
-                {
-                    if (CurrentRoom.OnExamine())
-                    {
-                        ListItems(CurrentRoom);
-                        ListExits(CurrentRoom);
-                    }
-                }
-                else DisplayBadCommandError();
-            }
-            else if (split[0] == "go")
-            {
-                string target = "";
-                if (split[1] == "to" && split.Count() > 2)
-                    for (int i = 2; i < split.Count(); i++)
-                        target += split[i] + " ";
-                else
-                {
-                    for (int i = 1; i < split.Count(); i++)
-                        target += split[i] + " ";
-                }
-                target = target.Substring(0, target.Length - 1);
-                bool valid = false;
-                Room selected = new Room();
-                foreach (Room r in CurrentRoom.Exits)
-                    if (r.Names.Contains(target))
-                    {
-                        selected = r;
-                        valid = true;
-                        break;
-                    }
-                if (valid)
-                    ChangeRoom(selected);
-                else DisplayBadCommandError();
-            }
-            else
-            {
-                string target = "";
-                for (int i = 1; i < split.Count(); i++)
-                    target += split[i] + " ";
-                target = target.Substring(0, target.Length - 1);
-                bool worked = false;
-                foreach (Item i in CurrentRoom.Objects)
-                {
-                    if (i.ValidNames.Contains(target))
-                    {
-                        if (CurrentRoom.OnInteract(split[0], i))
-                            i.OnInteract(split[0]);
-                        worked = true;
-                        break;
-                    }
-                }
-                if (!worked)
-                    DisplayBadCommandError();
-            }
-        }
         public static void ChangeRoom(Room newRoom)
         {
+            if (!CurrentRoom.AttemptedExit())
+                return;
             CurrentRoom = newRoom;
             newRoom.Describe(true);
         }
@@ -107,15 +48,25 @@ namespace CandideTextAdventure
             string[] potentials;
             switch (type)
             {
-                    case ErrorType.InvalidLocation:
-                    potentials = new string[]{"Where?", "I can't go there!"};
+                case ErrorType.InvalidGrab:
+                    potentials = new[] {"I can't take that!", "How would I do that?"};
                     break;
-                    case ErrorType.InvalidUse:
-                    potentials = new string[]{"How am I supposed to do that?", "I'm sorry dave, I'm afraid I can't do that."};
+                case ErrorType.InvalidItem:
+                    potentials = new[] {"What is that?", "I don't see that"};
+                    break;
+                case ErrorType.InvalidLocation:
+                    potentials = new string[] {"Where?", "I can't go there!"};
+                    break;
+                case ErrorType.InvalidUse:
+                    potentials = new string[]
+                                     {"How am I supposed to do that?", "I'm sorry dave, I'm afraid I can't do that."};
+                    break;
+                case ErrorType.InvalidSingleUse:
+                    potentials = new string[]{"On what?"};
                     break;
                 case ErrorType.General:
                 default:
-                    potentials =new string[]{ "Now you're just talking nonsense!", "What?"};
+                    potentials = new string[] {"Now you're just talking nonsense!", "What?"};
                     break;
             }
             Console.WriteLine(potentials[new Random().Next(potentials.Count())]);
@@ -123,7 +74,7 @@ namespace CandideTextAdventure
 
         enum ErrorType
         {
-            InvalidUse, InvalidLocation, General
+            InvalidUse, InvalidLocation, General, InvalidItem, InvalidGrab, InvalidSingleUse
         }
     }
 }

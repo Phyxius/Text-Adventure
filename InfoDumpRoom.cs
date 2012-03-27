@@ -15,6 +15,7 @@ namespace CandideTextAdventure
                 paintings.Add(p, false);
             Objects.AddRange(list);
             next = nextroom;
+            Objects.Add(new TestPickup());
         }
         public override bool OnInteract(string command, Item target)
         {
@@ -66,6 +67,21 @@ namespace CandideTextAdventure
         public override string GetName()
         {
             return "a painting of " + ValidNames[0];
+        }
+    }
+
+    class TestPickup : Item
+    {
+        public TestPickup(string name = "item")
+        {
+            ValidNames.Add(name);
+        }
+        public override bool AttemptedGrab()
+        {
+            Console.WriteLine("You pick it up.");
+            Room.Inventory.Add(this);
+            Room.CurrentRoom.Objects.Remove(this);
+            return true;
         }
     }
 }

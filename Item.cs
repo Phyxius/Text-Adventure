@@ -16,5 +16,10 @@ namespace CandideTextAdventure
         {
             return "an Item";
         }
+        public virtual bool AttemptedGrab()
+        {
+            return false;
+        }
+
     }
 }
