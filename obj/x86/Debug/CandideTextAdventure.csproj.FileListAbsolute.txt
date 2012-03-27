@@ -1,0 +1,13 @@
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\csfml-audio.dll
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\csfml-window.dll
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\libsndfile-1.dll
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\openal32.dll
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\CandideTextAdventure.exe
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\CandideTextAdventure.pdb
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\sfmlnet-audio.dll
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\sfmlnet-window.dll
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\sfmlnet-audio.pdb
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\sfmlnet-window.pdb
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\obj\x86\Debug\CandideTextAdventure.exe
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\obj\x86\Debug\CandideTextAdventure.pdb
