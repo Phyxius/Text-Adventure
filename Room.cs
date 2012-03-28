@@ -7,7 +7,7 @@ namespace CandideTextAdventure
 {
 	partial class Room
 	{
-		public List<Item> Objects = new List<Item>();
+		public List<Item> Items = new List<Item>();
 		public List<Room> Exits = new List<Room>();
 		public List<string> Names = new List<string>();
 		public virtual bool OnInteract(string command, Item target)
@@ -16,7 +16,7 @@ namespace CandideTextAdventure
 		}
 		public virtual bool OnExamine()
 		{
-			Console.WriteLine("Just an empty dev room. How did you get here?");
+			//Console.WriteLine("Just an empty dev room. How did you get here?");
 			return true;
 		}
 		public virtual string GetName()
@@ -33,14 +33,14 @@ namespace CandideTextAdventure
 		}
 		public virtual void Describe(bool isFirstEntry = false)
 		{
-			if (this.OnExamine() && this.Objects.Count > 0)
+			if (this.OnExamine() && this.Items.Count > 0)
 				ListItems(this);
 			if (this.Exits.Count > 0)
 				ListExits(this);
 			this.OnEnter();
 		}
 
-		public virtual bool AttemptedExit()
+		public virtual bool AttemptedExit(Room target)
 		{
 			return true;
 		}

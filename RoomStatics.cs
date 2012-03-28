@@ -10,23 +10,23 @@ namespace CandideTextAdventure
         public static Room CurrentRoom = new Room();
         public static void ChangeRoom(Room newRoom)
         {
-            if (!CurrentRoom.AttemptedExit())
+            if (!CurrentRoom.AttemptedExit(newRoom))
                 return;
             CurrentRoom = newRoom;
             newRoom.Describe(true);
         }
         public static void ListItems(Room room)
         {
-            if (room.Objects.Count == 0)
+            if (room.Items.Count == 0)
                 return;
             Console.Write("You see ");
-            if (room.Objects.Count > 1)
+            if (room.Items.Count > 1)
             {
-                for (int i = 0; i < room.Objects.Count - 1; i++)
-                    Console.Write(room.Objects[i].GetName() + ", ");
-                Console.WriteLine("and " + room.Objects[room.Objects.Count - 1].GetName() + ".");
+                for (int i = 0; i < room.Items.Count - 1; i++)
+                    Console.Write(room.Items[i].GetName() + ", ");
+                Console.WriteLine("and " + room.Items[room.Items.Count - 1].GetName() + ".");
             }
-            else Console.WriteLine(room.Objects[0].GetName() + ".");
+            else Console.WriteLine(room.Items[0].GetName() + ".");
 
         }
         public static void ListExits(Room room)

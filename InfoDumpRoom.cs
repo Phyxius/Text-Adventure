@@ -9,17 +9,18 @@ namespace CandideTextAdventure
     {
         private Dictionary<InfoDumpPainting, bool> paintings = new Dictionary<InfoDumpPainting, bool>();
         private Room next;
-        private string ending;
+        private string ending, desc;
 
-        public InfoDumpRoom(IEnumerable<InfoDumpPainting> list, Room nextroom, string endingmessage = "You feel yourself being sucked through a magical portal...")
+        public InfoDumpRoom(IEnumerable<InfoDumpPainting> list, Room nextroom, string endingmessage = "You feel yourself being sucked through a magical portal...", string OpeningDescription = "Blah.")
         {
             foreach (InfoDumpPainting p in list)
                 paintings.Add(p, false);
-            Objects.AddRange(list);
+            Items.AddRange(list);
             next = nextroom;
             ending = endingmessage;
-            //Objects.Add(new TestPickup());
-            //Objects.Add(new TestUsable());
+            desc = OpeningDescription;
+            //Items.Add(new TestPickup());
+            //Items.Add(new TestUsable());
         }
 
         public override bool OnInteract(string command, Item target)
@@ -49,18 +50,26 @@ namespace CandideTextAdventure
             Console.WriteLine("You are in a room with paintings.");
             return true;
         }
+
+        public override void Describe(bool isFirstEntry = false)
+        {
+            Console.WriteLine(desc);
+        }
+
+
     }
 
     internal class InfoDumpPainting : Item
     {
         private readonly string description;
-
+        private string name;
         public InfoDumpPainting(string name, string description)
         {
             this.description = description;
-            ValidNames.Add(name);
-            ValidNames.Add("painting of " + name);
-            ValidNames.Add("a painting of " + name);
+            this.name = name;
+            ValidNames.Add(name.ToLower());
+            ValidNames.Add("painting of " + name.ToLower());
+            ValidNames.Add("a painting of " + name.ToLower());
         }
 
         public override bool OnInteract(string command)
@@ -77,7 +86,7 @@ namespace CandideTextAdventure
 
         public override string GetName()
         {
-            return "a painting of " + ValidNames[0];
+            return "a painting of " + name;
         }
     }
 
@@ -92,7 +101,7 @@ namespace CandideTextAdventure
         {
             Console.WriteLine("You pick it up.");
             Room.Inventory.Add(this);
-            Room.CurrentRoom.Objects.Remove(this);
+            Room.CurrentRoom.Items.Remove(this);
             return true;
         }
         public override bool AttemptedSingleUse()

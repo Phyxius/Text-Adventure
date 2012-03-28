@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using CandideTextAdventure.Chapter1;
 using SFML.Audio;
 
 namespace CandideTextAdventure
@@ -11,11 +12,7 @@ namespace CandideTextAdventure
     {
         static void Main(string[] args)
         {
-            Room.ChangeRoom(
-                new InfoDumpRoom(
-                    new InfoDumpPainting[]
-                        {new InfoDumpPainting("a", "A painting of a."), new InfoDumpPainting("b", "A painting of b")},
-                    new Room()));
+            Room.ChangeRoom(new BeginningInfoDump());
            while(true)
            {
                Console.Write(">");

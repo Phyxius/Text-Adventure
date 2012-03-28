@@ -81,7 +81,7 @@ namespace CandideTextAdventure
                 }
                 target = target.Substring(0, target.Length - 1);
                 bool worked = false;
-                foreach (Item i in CurrentRoom.Objects)
+                foreach (Item i in CurrentRoom.Items)
                 {
                     if (i.ValidNames.Contains(target))
                     {
@@ -102,7 +102,7 @@ namespace CandideTextAdventure
                     target += split[i] + " ";
                 target = target.Substring(0, target.Length - 1);
                 bool worked = false;
-                foreach (Item i in CurrentRoom.Objects)
+                foreach (Item i in CurrentRoom.Items)
                 {
                     if (i.ValidNames.Contains(target))
                     {
@@ -123,7 +123,7 @@ namespace CandideTextAdventure
                     target += split[i] + " ";
                 target = target.Substring(0, target.Length - 1);
                 bool worked = false;
-                foreach (Item i in CurrentRoom.Objects)
+                foreach (Item i in CurrentRoom.Items)
                 {
                     if (i.ValidNames.Contains(target))
                     {
@@ -265,7 +265,7 @@ namespace CandideTextAdventure
                             break;
                         }
                     if (!targetworked)
-                        foreach (Item i in CurrentRoom.Objects)
+                        foreach (Item i in CurrentRoom.Items)
                             if (i.ValidNames.Contains(target))
                             {
                                 targetitem = i;
@@ -290,7 +290,7 @@ namespace CandideTextAdventure
                     target += split[i] + " ";
                 target = target.Substring(0, target.Length - 1);
                 bool worked = false;
-                foreach (Item i in CurrentRoom.Objects)
+                foreach (Item i in CurrentRoom.Items)
                 {
                     if (i.ValidNames.Contains(target))
                     {
