@@ -33,6 +33,9 @@ namespace CandideTextAdventure
                 {
                     target.OnInteract("examine");
                     Terminal.WriteLine(ending);
+                    Terminal.WriteLine("Press any key to continue...");
+                    Terminal.ReadKey();
+                    Terminal.Clear();
                     ChangeRoom(next);
                     return false;
                 }

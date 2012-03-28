@@ -8,13 +8,14 @@ using SFML.Audio;
 
 namespace CandideTextAdventure
 {
-    class Program
+    class MainThread
     {
+        public static bool ContinueRunning = true;
         static void Main(string[] args)
         {
             Room.ChangeRoom(new BeginningInfoDump());
-           // Room.ChangeRoom(new CandidesBedroom());
-            while (true)
+            //Room.ChangeRoom(new Lesson());
+            while (ContinueRunning)
             {
                 Terminal.Write(">");
                 Room.ParseInput(Terminal.ReadLine());

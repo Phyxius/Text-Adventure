@@ -19,5 +19,18 @@ namespace CandideTextAdventure
         {
             Console.Write(s);
         }
+        public static ConsoleKeyInfo ReadKey()
+        {
+            return Console.ReadKey();
+        }
+        public static void Clear()
+        {
+            Console.Clear();
+        }
+        public static void Pause(string message = "Press any key to continue...")
+        {
+            WriteLine(message);
+            ReadKey();
+        }
     }
 }

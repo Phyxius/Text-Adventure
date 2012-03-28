@@ -107,6 +107,9 @@ namespace CandideTextAdventure.Chapter1
                 Room.CurrentRoom.Items.Remove(target);
                 Room.Inventory.Remove(this);
                 Terminal.WriteLine("You unlock the door.");
+                Terminal.WriteLine("You follow Paquette to your lesson.");
+                Terminal.Pause();
+                Room.ChangeRoom(new Lesson());
                 return true;
             }
             return false;
@@ -220,6 +223,45 @@ namespace CandideTextAdventure.Chapter1
                 Terminal.WriteLine("Paquette says, \"that's it! Just use it on the door and we can be off!\"");
             }
             ((CandidesBed) Exits[0].Exits[1].Items[0]).haskey = true;
+        }
+    }
+
+    class Lesson : Room
+    {
+        public Lesson()
+        {
+            propername = "classroom";
+            Items.Add(new GenericItem(new string[] {"the textbook","textbook"}, "a textbook",
+                                      "This textbook is labeled, \"Introduction to metaphysico-theologo-cosmolo-nigology\"."));
+            Exits.Add(new MakeOutRoom());
+        }
+
+        public override void OnEnter()
+        {
+
+        }
+        public override void Describe(bool isFirstEntry = false)
+        {
+            Terminal.WriteLine("After your lesson, you hear Lady Cunegonde calling you from a side room.");
+            base.Describe(isFirstEntry);
+        }
+    }
+
+    class MakeOutRoom :Room
+    {
+        public MakeOutRoom()
+        {
+            propername = "a door to a side room";
+        }
+        public override void OnEnter()
+        {
+            Terminal.WriteLine("As you enter, Lady Cunegonde says \"I saw Dr. Pangloss performing an 'experiment' with paquette the other day. Would you like to try it with me?");
+            Terminal.WriteLine(
+                "Cunegonde begins to lean toward you, and just as her lips touch yours, the Baron walks in.");
+            Terminal.WriteLine("He is not amused by your 'experiment', and banishes you from his castle.");
+            Terminal.WriteLine("And this concludes the demo of this game.");
+            Terminal.Pause();
+            MainThread.ContinueRunning = false;
         }
     }
 }
