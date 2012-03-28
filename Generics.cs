@@ -25,7 +25,7 @@ namespace CandideTextAdventure
         {
             if (command == "examine")
             {
-                Console.WriteLine(description);
+                Terminal.WriteLine(description);
                 return true;
             }
             return false;

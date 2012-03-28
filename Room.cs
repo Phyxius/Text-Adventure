@@ -10,18 +10,19 @@ namespace CandideTextAdventure
 		public List<Item> Items = new List<Item>();
 		public List<Room> Exits = new List<Room>();
 		public List<string> Names = new List<string>();
+	    public string propername = "a door to a dev room";
 		public virtual bool OnInteract(string command, Item target)
 		{
 			return true;
 		}
 		public virtual bool OnExamine()
 		{
-			//Console.WriteLine("Just an empty dev room. How did you get here?");
+			//Terminal.WriteLine("Just an empty dev room. How did you get here?");
 			return true;
 		}
 		public virtual string GetName()
 		{
-			return "a door to a dev room";
+			return propername;
 		}
 		public virtual void OnEnter()
 		{

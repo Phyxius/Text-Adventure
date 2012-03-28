@@ -13,12 +13,12 @@ namespace CandideTextAdventure
         static void Main(string[] args)
         {
             Room.ChangeRoom(new BeginningInfoDump());
-           while(true)
-           {
-               Console.Write(">");
-               Room.ParseInput(Console.ReadLine());
-
-           }
+           // Room.ChangeRoom(new CandidesBedroom());
+            while (true)
+            {
+                Terminal.Write(">");
+                Room.ParseInput(Terminal.ReadLine());
+            }
         }
     }
 }

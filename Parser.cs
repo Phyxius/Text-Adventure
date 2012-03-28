@@ -24,15 +24,15 @@ namespace CandideTextAdventure
                 else if (split[0] == "inventory" || split[0] == "pack" || split[0] == "bag")
                 {
                     if (Inventory.Count == 0)
-                        Console.WriteLine("You have nothing but the clothes on your back.");
+                        Terminal.WriteLine("You have nothing but the clothes on your back.");
                     else if (Inventory.Count == 1)
-                        Console.WriteLine("You have " + Inventory[0].GetName() + ".");
+                        Terminal.WriteLine("You have " + Inventory[0].GetName() + ".");
                     else
                     {
-                        Console.Write("You have " + Inventory[0].GetName() + ", ");
+                        Terminal.Write("You have " + Inventory[0].GetName() + ", ");
                         for(int i = 1; i < Inventory.Count()-2; i++)
-                            Console.Write(Inventory[i].GetName() + ", ");
-                        Console.WriteLine("and " + Inventory[Inventory.Count()-1].GetName() + ".");
+                            Terminal.Write(Inventory[i].GetName() + ", ");
+                        Terminal.WriteLine("and " + Inventory[Inventory.Count()-1].GetName() + ".");
                     }
                     
                 }
@@ -204,14 +204,21 @@ namespace CandideTextAdventure
                             target += " ";
                     }
                     bool worked = false;
+                    bool exists = false;
                     foreach (Item i in Inventory)
                     {
                         if (!i.ValidNames.Contains(target))
                             continue;
+                        exists = true;
                         if (CurrentRoom.AttemptedSingleItemUse(i))
                             if (i.AttemptedSingleUse())
                                 worked = true;
                         break;
+                    }
+                    if (!exists)
+                    {
+                        DisplayBadCommandError(ErrorType.InvalidItem);
+                        return;
                     }
                     if (!worked)
                         DisplayBadCommandError(ErrorType.InvalidSingleUse);

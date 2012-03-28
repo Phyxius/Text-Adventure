@@ -19,28 +19,28 @@ namespace CandideTextAdventure
         {
             if (room.Items.Count == 0)
                 return;
-            Console.Write("You see ");
+            Terminal.Write("You see ");
             if (room.Items.Count > 1)
             {
                 for (int i = 0; i < room.Items.Count - 1; i++)
-                    Console.Write(room.Items[i].GetName() + ", ");
-                Console.WriteLine("and " + room.Items[room.Items.Count - 1].GetName() + ".");
+                    Terminal.Write(room.Items[i].GetName() + ", ");
+                Terminal.WriteLine("and " + room.Items[room.Items.Count - 1].GetName() + ".");
             }
-            else Console.WriteLine(room.Items[0].GetName() + ".");
+            else Terminal.WriteLine(room.Items[0].GetName() + ".");
 
         }
         public static void ListExits(Room room)
         {
             if (room.Exits.Count == 0)
                 return;
-            Console.Write("You see ");
+            Terminal.Write("You see ");
             if (room.Exits.Count > 1)
             {
                 for (int i = 0; i < room.Exits.Count - 1; i++)
-                    Console.Write(room.Exits[i].GetName() + ", ");
-                Console.WriteLine("and " + room.Exits[room.Exits.Count - 1] + ".");
+                    Terminal.Write(room.Exits[i].GetName() + ", ");
+                Terminal.WriteLine("and " + room.Exits[room.Exits.Count - 1].GetName() + ".");
             }
-            else Console.WriteLine(room.Exits[0].GetName() + ".");
+            else Terminal.WriteLine(room.Exits[0].GetName() + ".");
 
         }
         static void DisplayBadCommandError(ErrorType type = ErrorType.General)
@@ -69,7 +69,7 @@ namespace CandideTextAdventure
                     potentials = new string[] {"Now you're just talking nonsense!", "What?"};
                     break;
             }
-            Console.WriteLine(potentials[new Random().Next(potentials.Count())]);
+            Terminal.WriteLine(potentials[new Random().Next(potentials.Count())]);
         }
 
         enum ErrorType

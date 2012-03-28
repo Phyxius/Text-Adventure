@@ -32,7 +32,7 @@ namespace CandideTextAdventure
                 if (!paintings.ContainsValue(false))
                 {
                     target.OnInteract("examine");
-                    Console.WriteLine(ending);
+                    Terminal.WriteLine(ending);
                     ChangeRoom(next);
                     return false;
                 }
@@ -42,18 +42,18 @@ namespace CandideTextAdventure
 
         public override void OnEnter()
         {
-            Console.WriteLine("Examine all paintings to continue");
+            Terminal.WriteLine("Examine all paintings to continue");
         }
 
         public override bool OnExamine()
         {
-            Console.WriteLine("You are in a room with paintings.");
+            Terminal.WriteLine("You are in a room with paintings.");
             return true;
         }
 
         public override void Describe(bool isFirstEntry = false)
         {
-            Console.WriteLine(desc);
+            Terminal.WriteLine(desc);
         }
 
 
@@ -77,7 +77,7 @@ namespace CandideTextAdventure
             switch (command)
             {
                 case "examine":
-                    Console.WriteLine(description);
+                    Terminal.WriteLine(description);
                     return true;
                 default:
                     return false;
@@ -99,14 +99,14 @@ namespace CandideTextAdventure
 
         public override bool AttemptedGrab()
         {
-            Console.WriteLine("You pick it up.");
+            Terminal.WriteLine("You pick it up.");
             Room.Inventory.Add(this);
             Room.CurrentRoom.Items.Remove(this);
             return true;
         }
         public override bool AttemptedSingleUse()
         {
-            Console.WriteLine("You use it on itself");
+            Terminal.WriteLine("You use it on itself");
             return true;
         }
 
@@ -114,14 +114,14 @@ namespace CandideTextAdventure
         {
             if (command == "examine")
             {
-                Console.WriteLine("It is an item.");
+                Terminal.WriteLine("It is an item.");
                 return true;
             }
             return false;
         }
         public override bool AttemptedDoubleItemUse(Item target)
         {
-            Console.WriteLine("You use it.");
+            Terminal.WriteLine("You use it.");
             return true;
         }
     }
