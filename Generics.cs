@@ -16,6 +16,12 @@ namespace CandideTextAdventure
             this.description = description;
         }
 
+        public GenericItem(string name = "a generic item", string description = "A generic item.", params string[] identifiers)
+            :this(identifiers,name,description)
+        {
+            
+        }
+
         public override string GetName()
         {
             return name;

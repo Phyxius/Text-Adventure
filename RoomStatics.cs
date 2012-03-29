@@ -8,9 +8,9 @@ namespace CandideTextAdventure
     partial class Room
     {
         public static Room CurrentRoom = new Room();
-        public static void ChangeRoom(Room newRoom)
+        public static void ChangeRoom(Room newRoom, bool force = false)
         {
-            if (!CurrentRoom.AttemptedExit(newRoom))
+            if (force || !CurrentRoom.AttemptedExit(newRoom))
                 return;
             CurrentRoom = newRoom;
             newRoom.Describe(true);

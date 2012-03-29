@@ -259,9 +259,8 @@ namespace CandideTextAdventure.Chapter1
             Terminal.WriteLine(
                 "Cunegonde begins to lean toward you, and just as her lips touch yours, the Baron walks in.");
             Terminal.WriteLine("He is not amused by your 'experiment', and banishes you from his castle.");
-            //Terminal.WriteLine("And this concludes the demo of this game.");
             Terminal.Pause();
-            MainThread.ContinueRunning = false;
+            ChangeRoom(new Chapter2.ChapterTwoBegin());
         }
     }
 }

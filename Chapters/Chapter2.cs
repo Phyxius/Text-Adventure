@@ -10,8 +10,11 @@ namespace CandideTextAdventure.Chapter2
         public ChapterTwoBegin()
         {
             propername = "a door leading outside";
+            Names.Add("outside");
+            Names.Add("door leading outside");
+            Names.Add("out");
             Items.Add(new RoadSign());
-            Exits.Add(new Inn());
+            Exits.Add(new Inn(this));
         }
         public override void  Describe(bool isFirstEntry = false)
         {
@@ -20,6 +23,11 @@ namespace CandideTextAdventure.Chapter2
             Terminal.WriteLine("Eventually, you drag yourself to the nearest town, where you hope to get something to soothe your aching hunger.");
             Terminal.WriteLine("As you walk by the town's inn, you two men wearing blue uniforms call out to you from inside. They invite you to dine with them.");
             base.Describe(isFirstEntry);
+        }
+        public override bool ExamineCommand()
+        {
+            Terminal.WriteLine("You see light streaming in from the door.");
+            return true;
         }
     }
 
@@ -33,14 +41,16 @@ namespace CandideTextAdventure.Chapter2
 
     class Inn : Room
     {
-        public Inn()
+        public bool hasmug;
+        public Inn(ChapterTwoBegin prev)
         {
             propername = "a door to a dingy inn";
             Names.Add("dingy inn");
             Names.Add("in");
             Names.Add("inn");
             Items.Add(new Plate());
-            
+            Items.Add(new MenInBlue());
+            Exits.Add(prev);
         }
 
         public override void Describe(bool isFirstEntry = false)
@@ -51,7 +61,27 @@ namespace CandideTextAdventure.Chapter2
             base.Describe(isFirstEntry);
         }
 
+        public override bool AttemptedExit(Room target)
+        {
+            Terminal.WriteLine("As you get up to leave, the blue-clad men rather roughly force you back down.");
+            Terminal.WriteLine("The largest says, \"Wait just a minute boy, you've not finished your " +
+                               (hasmug ? "drink" : "dinner") + "!");
+            return false;
+        }
+
         
+    }
+
+    class MenInBlue : GenericItem
+    {
+        public MenInBlue()
+            : base(
+                new string[] {"men", "men in blue", "blue-clad men", "men in blue uniforms", "blue-uniformed men"},
+                "some men in blue uniforms", "These men look very stern looking. They are wearing spiffy blue uniforms."
+                )
+        {
+            
+        }
     }
 
     class Mug : GenericItem
@@ -70,6 +100,7 @@ namespace CandideTextAdventure.Chapter2
                     "The blue-clad men exclaim, \"You are now the support, the upholder, the defender and the hero of the Bulgars. Your fortune is made and your glory is assured.\"");
                 Terminal.WriteLine(
                     "The men immediately proceed to clap you in irons and whisk you away to be trained in the army.");
+                Room.ChangeRoom(new CandideTextAdventure.Chapter3to4.ChapterThreeBeginning());
                 return true;
             }
             return base.OnInteract(command, attemptedname);
@@ -102,7 +133,7 @@ namespace CandideTextAdventure.Chapter2
                     "They insist that you drink to the health of the King of the Bulgars, whom you have never met, and not your Lady Cunegonde, whom you still love.");
                 Room.CurrentRoom.Items.Add(new Mug());
                 Room.CurrentRoom.Items.Remove(this);
-                Terminal.EndOfDemo();
+                ((Inn) (Room.CurrentRoom)).hasmug = true;
                 return true;
             }
             return base.OnInteract(command, attemptedname);
