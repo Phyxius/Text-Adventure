@@ -23,7 +23,7 @@ namespace CandideTextAdventure
             //Items.Add(new TestUsable());
         }
 
-        public override bool OnInteract(string command, Item target)
+        public override bool OnInteract(string command, Item target, string attemptedname)
         {
             if (command == "examine" && target.GetType() == typeof (InfoDumpPainting) &&
                 paintings.ContainsKey((InfoDumpPainting) target))
@@ -31,7 +31,7 @@ namespace CandideTextAdventure
                 paintings[(InfoDumpPainting) target] = true;
                 if (!paintings.ContainsValue(false))
                 {
-                    target.OnInteract("examine");
+                    target.OnInteract("examine", attemptedname);
                     Terminal.WriteLine(ending);
                     Terminal.WriteLine("Press any key to continue...");
                     Terminal.ReadKey();
@@ -75,7 +75,7 @@ namespace CandideTextAdventure
             ValidNames.Add("a painting of " + name.ToLower());
         }
 
-        public override bool OnInteract(string command)
+        public override bool OnInteract(string command, string attemptedname)
         {
             switch (command)
             {
@@ -113,7 +113,7 @@ namespace CandideTextAdventure
             return true;
         }
 
-        public override bool OnInteract(string command)
+        public override bool OnInteract(string command, string attemptedname)
         {
             if (command == "examine")
             {

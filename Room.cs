@@ -11,7 +11,7 @@ namespace CandideTextAdventure
         public List<Room> Exits = new List<Room>();
         public List<string> Names = new List<string>();
         public string propername = "a door to a dev room";
-        public virtual bool OnInteract(string command, Item target)
+        public virtual bool OnInteract(string command, Item target, string attemptedname)
         {
             return true;
         }
@@ -60,6 +60,12 @@ namespace CandideTextAdventure
         
         public virtual bool AttemptedDoubleItemUse(Item source, Item target)
         {
+            return true;
+        }
+
+        public virtual bool ExamineCommand()
+        {
+            Console.WriteLine("I can go here.");
             return true;
         }
 

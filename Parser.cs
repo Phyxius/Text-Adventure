@@ -123,12 +123,21 @@ namespace CandideTextAdventure
                     target += split[i] + " ";
                 target = target.Substring(0, target.Length - 1);
                 bool worked = false;
+                foreach (Room r in CurrentRoom.Exits)
+                {
+                    if (r.Names.Contains(target))
+                    {
+                        if (r.ExamineCommand())
+                            return;
+                        break;
+                    }
+                }
                 foreach (Item i in CurrentRoom.Items)
                 {
                     if (i.ValidNames.Contains(target))
                     {
-                        if (CurrentRoom.OnInteract(split[0], i))
-                            i.OnInteract(split[0]);
+                        if (CurrentRoom.OnInteract(split[0], i, target))
+                            i.OnInteract(split[0], target);
                         worked = true;
                         break;
                     }
@@ -140,7 +149,7 @@ namespace CandideTextAdventure
                         if (i.ValidNames.Contains(target))
                         {
                             worked = true;
-                            i.OnInteract(split[0]);
+                            i.OnInteract(split[0], target);
                             break;
                         }
                     }
@@ -301,8 +310,8 @@ namespace CandideTextAdventure
                 {
                     if (i.ValidNames.Contains(target))
                     {
-                        if (CurrentRoom.OnInteract(split[0], i))
-                            if (!i.OnInteract(split[0]))
+                        if (CurrentRoom.OnInteract(split[0], i, target))
+                            if (!i.OnInteract(split[0], target))
                                 DisplayBadCommandError(ErrorType.InvalidUse);
                         worked = true;
                         break;

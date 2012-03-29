@@ -32,5 +32,34 @@ namespace CandideTextAdventure
             WriteLine(message);
             ReadKey();
         }
+
+        public static void RestartFromLastCheckpoint<T>() where T : Room,new()
+        {
+            WriteLine("Restart from last checkpoint?");
+            Write("[y]es/[n]o: ");
+            switch (ReadLine().ToLower())
+            {
+                case "yes":
+                case "y":
+                    Room.ChangeRoom(new T());
+                    return;
+                case "no":
+                case "n":
+                    MainThread.ContinueRunning = false;
+                    return;
+                default:
+                    WriteLine("What?");
+                    break;
+            }
+        }
+
+        public static void EndOfDemo()
+        {
+            WriteLine();
+            WriteLine("This ends the demo of the game.");
+            WriteLine("I hope you have enjoyed it!");
+            Pause();
+            MainThread.ContinueRunning = false;
+        }
     }
 }

@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Chapters\Chapter1.cs" />
+    <Compile Include="Chapters\Chapter2.cs" />
     <Compile Include="Generics.cs" />
     <Compile Include="InfoDumpRoom.cs" />
     <Compile Include="Inventory.cs" />

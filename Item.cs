@@ -9,7 +9,7 @@ namespace CandideTextAdventure
 	{
 		public List<String> ValidNames = new List<string>(new String[]{});
 	    public string propername = "an Item";
-		public virtual bool OnInteract(string command)
+		public virtual bool OnInteract(string command, string attemptedname)
 		{
 			return false;
 		}

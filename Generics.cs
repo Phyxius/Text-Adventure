@@ -21,7 +21,7 @@ namespace CandideTextAdventure
             return name;
         }
 
-        public override bool OnInteract(string command)
+        public override bool OnInteract(string command, string attemptedname)
         {
             if (command == "examine")
             {
