@@ -25,6 +25,11 @@ namespace CandideTextAdventure
 
         public override bool OnInteract(string command, Item target, string attemptedname)
         {
+            if (command == "iddqd")
+            {
+                ChangeRoom(next);
+                return false;
+            }
             if (command == "examine" && target.GetType() == typeof (InfoDumpPainting) &&
                 paintings.ContainsKey((InfoDumpPainting) target))
             {

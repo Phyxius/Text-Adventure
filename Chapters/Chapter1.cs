@@ -58,6 +58,18 @@ namespace CandideTextAdventure.Chapter1
             }
             else return true;
         }
+
+        public override bool OnInteract(string command, Item target, string attemptedname)
+        {
+            if (command == "iddqd")
+            {
+                Items.Remove(clothes);
+                ChangeRoom(new Chapter2.ChapterTwoBegin());
+                return false;
+            }
+            else
+            return base.OnInteract(command, target, attemptedname);
+        }
     }
 
     class CandidesBed :Item
@@ -163,7 +175,7 @@ namespace CandideTextAdventure.Chapter1
                     return true;
                 case "wear":
                     Terminal.WriteLine("You put on the clothes.");
-                    Terminal.WriteLine("You can follow Paquette now.");
+                    //Terminal.WriteLine("You can follow Paquette now.");
                     Room.CurrentRoom.Items.Remove(this);
                     return true;
                 default:
@@ -216,11 +228,11 @@ namespace CandideTextAdventure.Chapter1
         }
         public override void OnEnter()
         {
-            if (Inventory.Count > 0)
+            if (Inventory.Count == 0)
                 Terminal.WriteLine("As you enter your sitting room, Paquette says, \"Candide, I seem to have forgotten the key. Could you go find it for me? It probably found its way under your bed again.\"");
             else
             {
-                Terminal.WriteLine("Paquette says, \"that's it! Just use it on the door and we can be off!\"");
+                Terminal.WriteLine("Paquette says, \"That's it! Just use it on the door and we can be off!\"");
             }
             ((CandidesBed) Exits[0].Exits[1].Items[0]).haskey = true;
         }
@@ -252,6 +264,7 @@ namespace CandideTextAdventure.Chapter1
         public MakeOutRoom()
         {
             propername = "a door to a side room";
+            Names.AddRange(new string[]{"door", "side room", "paquette"});
         }
         public override void OnEnter()
         {

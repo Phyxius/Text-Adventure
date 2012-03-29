@@ -41,6 +41,7 @@ namespace CandideTextAdventure.Chapter2
 
     class Inn : Room
     {
+        public bool isdead = false;
         public bool hasmug;
         public Inn(ChapterTwoBegin prev)
         {
@@ -63,6 +64,8 @@ namespace CandideTextAdventure.Chapter2
 
         public override bool AttemptedExit(Room target)
         {
+            if (isdead)
+                return true;
             Terminal.WriteLine("As you get up to leave, the blue-clad men rather roughly force you back down.");
             Terminal.WriteLine("The largest says, \"Wait just a minute boy, you've not finished your " +
                                (hasmug ? "drink" : "dinner") + "!");
@@ -100,6 +103,9 @@ namespace CandideTextAdventure.Chapter2
                     "The blue-clad men exclaim, \"You are now the support, the upholder, the defender and the hero of the Bulgars. Your fortune is made and your glory is assured.\"");
                 Terminal.WriteLine(
                     "The men immediately proceed to clap you in irons and whisk you away to be trained in the army.");
+                Terminal.Pause();
+                Terminal.WriteLine();
+                ((Inn)(Room.CurrentRoom)).isdead = true;
                 Room.ChangeRoom(new CandideTextAdventure.Chapter3to4.ChapterThreeBeginning());
                 return true;
             }
@@ -124,6 +130,7 @@ namespace CandideTextAdventure.Chapter2
                     Terminal.WriteLine(
                         "As you bite the plate, your front teeth shatter, creating huge gashes in your gums.");
                     Terminal.WriteLine("Infection sets in a few days later, and you die.");
+                    ((Inn) (Room.CurrentRoom)).isdead = true;
                     Terminal.RestartFromLastCheckpoint<ChapterTwoBegin>();
                     return true;
                 }

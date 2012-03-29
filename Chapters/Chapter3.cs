@@ -75,18 +75,21 @@ namespace CandideTextAdventure.Chapter3to4
     class NorthRoad : Room
     {
         private bool spoken = false;
-        public new string propername = "a road leading north";
-        public new List<Item> Items = new List<Item>(new Item[]{new John1(), });
         public NorthRoad()
         {
-            Exits.Add(this);
+            Items.Add(new John1());
+            propername = "a road leading north";
+            Names.Add("north");
+            Names.Add("road leading north");
+            Exits.Add(new SouthRoad(this));
         }
         public override void Describe(bool isFirstEntry = false)
         {
             if (!spoken)
             {
                 Terminal.WriteLine(
-                    "As you approach John, he says, \"I saw your predicament, and I feel that you were treated wrongly. Here is two florins.\"");
+                    "As you approach the man, he says, \"I saw your predicament, and I feel that you were treated wrongly. Here is two florins.\"");
+                Terminal.WriteLine("He introduces himself as John the Anabaptist.");
                 Terminal.WriteLine(
                     "John also offers to teach you to work in fabric-making. You fall on your knees at his feet and thank him for his generosity.");
                 Terminal.WriteLine("You also remember the beggar you saw earlier.");
@@ -108,9 +111,11 @@ namespace CandideTextAdventure.Chapter3to4
 
     class SouthRoad : Room
     {
-        public new string propername = "a road leading south";
         public SouthRoad(NorthRoad r)
         {
+            propername = "a road leading south";
+            Names.Add("south");
+            Names.Add("road leading south");
             Exits.Add(r);
             Exits.Add(new WestRoad());
         }
@@ -118,10 +123,12 @@ namespace CandideTextAdventure.Chapter3to4
 
     class WestRoad :Room
     {
-        public new string propername = "a road leading west";
         public WestRoad()
         {
             Items.Add(new Pangloss1());
+            propername = "a road leading west";
+            Names.Add("west");
+            Names.Add("road leading west");
         }
     }
     
