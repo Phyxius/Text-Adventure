@@ -59,7 +59,7 @@ namespace CandideTextAdventure
                     break;
                 case ErrorType.InvalidUse:
                     potentials = new string[]
-                                     {"How am I supposed to do that?", "I'm sorry dave, I'm afraid I can't do that."};
+                                     {"How am I supposed to do that?", "I'm sorry Dave, I'm afraid I can't do that."};
                     break;
                 case ErrorType.InvalidSingleUse:
                     potentials = new string[]{"On what?"};
