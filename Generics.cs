@@ -34,18 +34,6 @@ namespace CandideTextAdventure
                 Terminal.WriteLine(description);
                 return true;
             }
-			
-			if(command =="help")
-			{
-				Terminal.WriteLine ("List of Commands:\n");
-				Terminal.WriteLine ("Go {direction}: go in a direction on the map");
-				Terminal.WriteLine ("Talk {name}: talk to a person");
-				Terminal.WriteLine ("Take {item name}: pick up an item");
-				Terminal.WriteLine ("Help: display command list");
-				Terminal.WriteLine ("Inventory: display inventory items");
-				Terminal.WriteLine ("Examine {object}: investigate an object in the room");
-				//do for save and load
-			}
             return false;
         }
     }

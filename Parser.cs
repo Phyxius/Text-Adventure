@@ -13,6 +13,18 @@ namespace CandideTextAdventure
             var split = input.ToLower().Split(' ');
             if (split.Count() == 1)
             {
+                if (split[0] == "help")
+                {
+                    Terminal.WriteLine("List of Commands:\n");
+                    Terminal.WriteLine("Go {direction}: go in a direction on the map");
+                    Terminal.WriteLine("Talk {name}: talk to a person");
+                    Terminal.WriteLine("Take {item name}: pick up an item");
+                    Terminal.WriteLine("Help: display command list");
+                    Terminal.WriteLine("Inventory: display inventory items");
+                    Terminal.WriteLine("Examine {object}: investigate an object in the room");
+                    return;
+                    //do for save and load
+                }
                 if (split[0] == "examine" || split[0] == "look")
                 {
                     if (CurrentRoom.OnExamine())
