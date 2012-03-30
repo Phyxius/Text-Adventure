@@ -16,7 +16,7 @@ namespace CandideTextAdventure.Chapter1
                                                   new InfoDumpPainting("auto-da-fe", "Auto-da-fe's were performed by the Spanish and Portugese Inquisitions as acts of public penence. They were often held after a major disaster or problem, in the belief that God caused the problem to happen, and needed to be placated with prayer and burnings."),
                                                   new InfoDumpPainting("riot", "PLACEHOLDER"), 
                                               }, new CandidesBedroom(), "On to the real adventure!",
-                                          "Welcome to Candide Text Adventure created by Shea Polansky, featuring original compositions/arrangements by Paul Hafely. Text by Paul Hafely and Shea Polansky.  You find yourself in a room with five portraits in it. The first is a portrait of Voltaire. The second is a depiction of a French salon. The third concerns itself with Leibniz. The fourth shows an auto-da-fe characteristic of the Spanish Inquisition (expected by nobody). The final shows a riot of some kind. "
+                                          "Welcome to Candide Text Adventure created by Shea Polansky, featuring original compositions/arrangements by Paul Hafley. Text by Paul Hafley and Shea Polansky.  You find yourself in a room with five portraits in it. The first is a portrait of Voltaire. The second is a depiction of a French salon. The third concerns itself with Leibniz. The fourth shows an auto-da-fe characteristic of the Spanish Inquisition (expected by nobody). The final shows a riot of some kind. "
             )
         {
             

@@ -7,6 +7,7 @@ namespace CandideTextAdventure
 {
     static class Terminal
     {
+        //TODO: Automatic word wrap
         public static void WriteLine(string message = "")
         {
             Console.WriteLine(message);
@@ -41,7 +42,9 @@ namespace CandideTextAdventure
             {
                 case "yes":
                 case "y":
-                    Room.ChangeRoom(new T());
+                    var tmp = new T();    
+                    Room.ChangeRoom(tmp, true);
+                    Room.Inventory.Clear();
                     return;
                 case "no":
                 case "n":

@@ -10,7 +10,7 @@ namespace CandideTextAdventure
         public static Room CurrentRoom = new Room();
         public static void ChangeRoom(Room newRoom, bool force = false)
         {
-            if (force || !CurrentRoom.AttemptedExit(newRoom))
+            if (!force && !CurrentRoom.AttemptedExit(newRoom))
                 return;
             CurrentRoom = newRoom;
             newRoom.Describe(true);

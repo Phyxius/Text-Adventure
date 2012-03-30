@@ -62,6 +62,7 @@ namespace CandideTextAdventure
         public override void Describe(bool isFirstEntry = false)
         {
             Terminal.WriteLine(desc);
+            base.Describe(isFirstEntry);
         }
 
 

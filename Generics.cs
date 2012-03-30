@@ -5,21 +5,24 @@ using System.Text;
 
 namespace CandideTextAdventure
 {
-    class GenericItem : Item
+    internal class GenericItem : Item
     {
-        public readonly string name;
-        public readonly string description;
-        public GenericItem(IEnumerable<string> identifiers, string name = "a generic item", string description = "A generic item.")
+        public string name;
+        public string description;
+
+        public GenericItem(IEnumerable<string> identifiers, string name = "a generic item",
+                           string description = "A generic item.")
         {
             ValidNames.AddRange(identifiers);
             this.name = name;
             this.description = description;
         }
 
-        public GenericItem(string name = "a generic item", string description = "A generic item.", params string[] identifiers)
-            :this(identifiers,name,description)
+        public GenericItem(string name = "a generic item", string description = "A generic item.",
+                           params string[] identifiers)
+            : this(identifiers, name, description)
         {
-            
+
         }
 
         public override string GetName()
@@ -35,6 +38,24 @@ namespace CandideTextAdventure
                 return true;
             }
             return false;
+        }
+    }
+
+    internal class GenericRoom : Room
+    {
+        public string desc;
+
+        public GenericRoom(string name = "a generic room", string description = "You can go here.", params string[] names)
+        {
+            propername = name;
+            desc = description;
+            Names.AddRange(names);
+        }
+
+        public override bool ExamineCommand()
+        {
+            Terminal.WriteLine(desc);
+            return true;
         }
     }
 }

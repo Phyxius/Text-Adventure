@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using CandideTextAdventure.Chapter5to10;
 
 namespace CandideTextAdventure.Chapter3to4
 {
@@ -95,9 +93,19 @@ namespace CandideTextAdventure.Chapter3to4
                 Terminal.WriteLine("You also remember the beggar you saw earlier.");
                 Terminal.WriteLine(
                     "You think to yourself, \"That beggar has much greater need of this money than I. I should share my luck with him.\"");
+                Inventory.Add(new TwoFlorins());
             }
             spoken = true;
             base.Describe(isFirstEntry);
+        }
+    }
+
+    class TwoFlorins : GenericItem
+    {
+        public TwoFlorins()
+            : base("two florins", "This is your only money in the world.", "florins", "money", "two florins")
+        {
+            
         }
     }
 
@@ -135,7 +143,7 @@ namespace CandideTextAdventure.Chapter3to4
     class Pangloss1 : GenericItem
     {
         public Pangloss1()
-             : base("a grimy beggar", "This beggar seems awfully familiar. It is hard to tell through the layers of grime and sickness.",
+             : base("a grimy beggar", "This beggar seems awfully familiar. It is hard to tell through the layers of grime and sickness. I should give him some money.",
                 "beggar", "to beggar", "the beggar", "to the beggar", "the grimy beggar", "grimy beggar", "to the grimy beggar", "pangloss", "dr. pangloss", "doctor pangloss", "to pangloss",
             "to doctor pangloss", "to dr. pangloss", "money to dr. pangloss")
         {
@@ -171,7 +179,11 @@ namespace CandideTextAdventure.Chapter3to4
                 case "give":
                     Terminal.WriteLine("As you hand him you only money, he looks into your eyes.");
                     Terminal.WriteLine("\"Master Candide?!\" he exclaims, \"Don't you regognize me, Dr. Pangloss?!\"");
-                    Terminal.EndOfDemo();
+                    Terminal.WriteLine("You take Dr Pangloss to John and beg him to help Pangloss as he had helped you.");
+                    Terminal.WriteLine("John does as you ask, and two months pass.");
+                    Terminal.Pause();
+                    Terminal.WriteLine();
+                    Room.ChangeRoom(new Chapter5Begin());
                     return true;
                 default:
                     return base.OnInteract(command, attemptedname);

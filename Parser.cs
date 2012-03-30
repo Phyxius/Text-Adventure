@@ -172,49 +172,6 @@ namespace CandideTextAdventure
             }
             else if (split[0] == "use")
             {
-                /*if (split.Count() > 2)
-                {
-                    if (split[2] == "on")
-                    {
-                        if (split.Count() < 4)
-                        {
-                            DisplayBadCommandError(ErrorType.General)
-                            return;
-                        }
-                        Item source;
-                        bool targetExists = false;
-                        foreach(Item i in Inventory)
-                        {
-                            if (i.ValidNames.Contains(split[1]))
-                            {
-                                source = i;
-                                targetExists = true;
-                                break;
-                            }
-                        }
-                        if (!targetExists)
-                        {
-                            DisplayBadCommandError(ErrorType.InvalidItem)
-                            return;
-                        }
-                        string target = "";
-                        for(int i = 3; i < split.Count(); i++)
-                        {
-                            target += split[i];
-                            if (i < split.Count() - 1)
-                                target += " ";
-                        }
-                        bool worked = false;
-                        foreach (Item i in Inventory)
-                        {
-                            if (i.ValidNames.Contains(target))
-                            {
-                                if (CurrentRoom.AttemptedSingleItemUse(i))
-                                    if (
-                            }
-                        }
-                    }
-                }*/
                 if (!split.Contains("on"))
                 {
                     string target = "";

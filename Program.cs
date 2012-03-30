@@ -2,6 +2,8 @@
 using CandideTextAdventure.Chapter1;
 using CandideTextAdventure.Chapter2;
 using CandideTextAdventure.Chapter3to4;
+using CandideTextAdventure.Chapter5to10;
+
 
 namespace CandideTextAdventure
 {
@@ -12,8 +14,8 @@ namespace CandideTextAdventure
         {
             Console.Title = "Candide Text Adventure";
             //Console.WindowWidth = Console.LargestWindowWidth;
-            Room.ChangeRoom(new BeginningInfoDump());
-            //Room.ChangeRoom(new ChapterThreeBeginning());
+            //Room.ChangeRoom(new BeginningInfoDump());
+            Room.ChangeRoom(new Chapter5Begin());
             while (ContinueRunning)
             {
                 Terminal.Write(">");

@@ -89,14 +89,14 @@ namespace CandideTextAdventure.Chapter2
 
     class Mug : GenericItem
     {
-        public Mug() :base(new string[]{"mug", "mug of beer", "beer", "mug full of frothy beer"}, "mug full of frothy beer", "This beer looks delicious!")
+        public Mug() :base(new string[]{"mug", "mug of beer", "beer", "mug full of frothy beer", "drink"}, "mug full of frothy beer", "This beer looks delicious!")
         {
             
         }
 
         public override bool OnInteract(string command, string attemptedname)
         {
-            if (command == "drink")
+            if (command == "drink" || command == "finish")
             {
                 Terminal.WriteLine("You drink to the health of the King of the Bulgars.");
                 Terminal.WriteLine(
@@ -125,7 +125,7 @@ namespace CandideTextAdventure.Chapter2
         {
             if (command == "eat")
             {
-                if (attemptedname == "plate" || attemptedname == "dinnerplate")
+                if (attemptedname == "plate" || attemptedname == "dinnerplate" || attemptedname == "plate full of food")
                 {
                     Terminal.WriteLine(
                         "As you bite the plate, your front teeth shatter, creating huge gashes in your gums.");
