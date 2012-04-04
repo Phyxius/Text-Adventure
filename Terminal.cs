@@ -10,7 +10,25 @@ namespace CandideTextAdventure
         //TODO: Automatic word wrap
         public static void WriteLine(string message = "")
         {
-            Console.WriteLine(message);
+            var rows = message.Split('\n');
+            for (int i = 0; i < rows.Length; i++)
+            {
+                var words = rows[i].Split(' ');
+                for (int j = 0; j < words.Length; j++)
+                {
+                    var word = words[j];
+                    if (Console.BufferWidth - (Console.CursorLeft + 1) < word.Length)
+                        Console.WriteLine();
+                    Console.Write(word);
+                    if (j != words.Length - 1)
+                    {
+                        if (Console.BufferWidth == Console.CursorLeft)
+                            Console.WriteLine();
+                        else Console.Write(' ');
+                    }
+                }
+                Console.WriteLine();
+            }
         }
         public static string ReadLine()
         {
@@ -18,7 +36,26 @@ namespace CandideTextAdventure
         }
         public static void Write(string s)
         {
-            Console.Write(s);
+            var rows = s.Split('\n');
+            for (int i = 0; i < rows.Length; i++)
+            {
+                var words = rows[i].Split(' ');
+                for (int j = 0; j < words.Length; j++ )
+                {
+                    var word = words[j];
+                    if (Console.BufferWidth - (Console.CursorLeft + 1) < word.Length)
+                        Console.WriteLine();
+                    Console.Write(word);
+                    if (j != words.Length - 1)
+                    {
+                        if (Console.BufferWidth == Console.CursorLeft)
+                            Console.WriteLine();
+                        else Console.Write(' ');
+                    }
+                }
+                if(i < rows.Length - 1)
+                    Console.WriteLine();
+            }
         }
         public static ConsoleKeyInfo ReadKey()
         {
@@ -34,7 +71,7 @@ namespace CandideTextAdventure
             ReadKey();
         }
 
-        public static void RestartFromLastCheckpoint<T>() where T : Room,new()
+        public static void RestartFromLastCheckpoint<T>(params Item[] inventory) where T : Room,new()
         {
             WriteLine("Restart from last checkpoint?");
             Write("[y]es/[n]o: ");
@@ -45,6 +82,8 @@ namespace CandideTextAdventure
                     var tmp = new T();    
                     Room.ChangeRoom(tmp, true);
                     Room.Inventory.Clear();
+                    foreach(Item i in inventory)
+                        Room.Inventory.Add(i);
                     return;
                 case "no":
                 case "n":
@@ -52,6 +91,7 @@ namespace CandideTextAdventure
                     return;
                 default:
                     WriteLine("What?");
+                    RestartFromLastCheckpoint<T>(inventory);
                     break;
             }
         }

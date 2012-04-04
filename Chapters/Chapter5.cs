@@ -93,6 +93,21 @@ namespace CandideTextAdventure.Chapter5to10
             
         }
 
+        public override bool AttemptedDoubleItemUse(Item target)
+        {
+            if (target.GetType() == typeof(Jew))
+            {
+                Room.ParseInput("stab jew");
+                return true;
+            }
+            if (target.GetType() == typeof(Inquisitor))
+            {
+                Room.ParseInput("stab inquisitor");
+                return true;
+            }
+            return false;
+        }
+
         public override bool AttemptedGrab()
         {
             Console.WriteLine("You pick up the sword and put it on your waist.");
@@ -313,8 +328,8 @@ namespace CandideTextAdventure.Chapter5to10
                     Terminal.WriteLine(
                         "The old lady suggests that the group run away before someone realizes that you killed two men. Everyone agrees, and you run away to the port.");
                     Terminal.WriteLine("Once at the port, Cunegonde notices that her jewels and money have been stolen, and you thus have no way of buying a fare.");
-                    Terminal.WriteLine("Instead, you enlist in the Portuguese army as a captain, and set sail for  the New World, with Cunegonde and the old woman in tow.");
-                    Terminal.EndOfDemo();
+                    Terminal.WriteLine("Instead, you enlist in the Portuguese army as a captain, and set sail for the New World, with Cunegonde and the old woman in tow.");
+                    
                     return true;
                 case "burn":
                 case "bake":
