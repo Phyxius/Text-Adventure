@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CandideTextAdventure.Chapter11;
+using CandideTextAdventure.Chapter19;
 
 namespace CandideTextAdventure.Chapter16
 {
@@ -149,7 +150,9 @@ namespace CandideTextAdventure.Chapter16
             Terminal.Pause();
             Terminal.WriteLine("When the device is completed, the King gives you a flock of red sheep laden with gold and diamonds to help you on your journey.");
             Terminal.WriteLine("You use the device and again wander through the jungle. You eventually come to a city, after losing all but a few of your sheep.");
-            Terminal.EndOfDemo();
+            Terminal.Pause();
+            Terminal.WriteLine("You decide to find a ship to deliver you to Buenos Aires.");
+            Room.ChangeRoom(new Chapter19Start());
         }
     }
 }

@@ -62,7 +62,7 @@ namespace CandideTextAdventure
             var tmp = Console.ReadKey();
             if (!HideKeyPressed)
                 return tmp;
-            if(Char.IsLetter(tmp.KeyChar))
+            if(tmp.Key != ConsoleKey.Enter)
                 Console.CursorLeft--;
             Console.Write(' ');
             Console.CursorLeft--;
