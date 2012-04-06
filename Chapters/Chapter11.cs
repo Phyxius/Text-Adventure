@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CandideTextAdventure.Chapter16;
 
 namespace CandideTextAdventure.Chapter11
 {
@@ -49,6 +50,7 @@ namespace CandideTextAdventure.Chapter11
                 "door to the guest bedroom", "door to bedroom", "door to guest room")
         {
             Items.AddRange(new Item[] {new SecondBed(), new SwordPlaque(), new MonaLisa(),});
+            Exits.Add(new Chapter15Hallway(this));
         }
 
         public override void Describe(bool isFirstEntry = false)
@@ -114,7 +116,7 @@ namespace CandideTextAdventure.Chapter11
             : base(
                 "a painting of a woman",
                 "The woman in the painting looks Italian. She is smiling as though she knows something that you do not. Much of the artist's signature has rubbed off, but you can make out a few letters: \"-inci\".",
-                "painting", "painting of woman", "painting of a woman")
+                "painting", "painting of woman", "painting of a woman", "woman")
         {
 
         }
@@ -187,6 +189,7 @@ namespace CandideTextAdventure.Chapter11
         {
             PrevRoom = prev;
             Exits.Add(prev);
+            Exits.Add(new DinnerRoom(this));
             Items.Add(new Crowbar());
         }
 
@@ -196,18 +199,24 @@ namespace CandideTextAdventure.Chapter11
     {
         public Crowbar()
             : base(
-                "a crowbar lying on the ground", "This is a crowbar.", "crowbar", "crowbar lying on the ground",
+                "a crowbar lying on the ground", "Some crudely carved letters on the crowbar read, \"Property of G. Freeman. If found, return to Black Mesa Research Facility, Black Mesa, New Mexico.\"", "crowbar", "crowbar lying on the ground",
                 "crowbar on the ground")
         {
-
+            propername = name;
         }
 
         public override bool AttemptedGrab()
         {
             Terminal.WriteLine("You pick it up.");
+            propername = "a crowbar";
             Room.Inventory.Add(this);
             Room.CurrentRoom.Items.Remove(this);
             return true;
+        }
+
+        public override string GetName()
+        {
+            return propername;
         }
 
         public override bool AttemptedDoubleItemUse(Item target)
@@ -222,6 +231,8 @@ namespace CandideTextAdventure.Chapter11
                 Terminal.WriteLine(
                     "You pry the sword off of the plaque. It falls to the ground with a loud clanking sound.");
                 Terminal.WriteLine("Your crowbar breaks.");
+                Room.CurrentRoom.Items.Add(new Excalibur());
+                Room.CurrentRoom.Items.Remove(target);
                 Room.Inventory.Remove(this);
                 return true;
             }
@@ -231,6 +242,7 @@ namespace CandideTextAdventure.Chapter11
 
     internal class DinnerRoom : GenericRoom
     {
+        private CunegondesBrother brother;
         public DinnerRoom(Chapter15Hallway prev)
             : base(
                 "the door to the dining room", "You can go here.", "dining room", "the door to the dining room",
@@ -238,6 +250,7 @@ namespace CandideTextAdventure.Chapter11
         {
             Exits.Add(prev);
             Exits.Add(new Chapter15Outside());
+            brother = new CunegondesBrother();
             Items.Add(new CunegondesBrother());
         }
 
@@ -254,9 +267,11 @@ namespace CandideTextAdventure.Chapter11
 
         public override bool AttemptedExit(Room target)
         {
+            if(Items.Contains(brother))
+                return true;
             Terminal.WriteLine("As you attempt to leave, Cunegonde's borther stabs you dead.");
-            Terminal.RestartFromLastCheckpoint<Chapter11Start>();
-            return true;
+            Terminal.RestartFromLastCheckpoint<Chapter15Start>();
+            return false;
         }
     }
 
@@ -298,7 +313,9 @@ namespace CandideTextAdventure.Chapter11
                     if (Room.Inventory.Count > 0 && Room.Inventory[0].GetType() == typeof(Excalibur))
                     {
                         Terminal.WriteLine("You kill Cunegonde's brother.");
-                        Terminal.EndOfDemo();
+                        Terminal.Pause();
+                        Room.CurrentRoom.Items.Remove(this);
+                        Room.ChangeRoom(new Chapter16Start());
                     }
                     else
                     {
@@ -308,7 +325,8 @@ namespace CandideTextAdventure.Chapter11
                 case "speak":
                 case "talk":
                     Terminal.WriteLine("Cunegonde's brother is not interested in talking. He stabs you dead.");
-                    Terminal.RestartFromLastCheckpoint<Chapter11Start>();
+
+                    Terminal.RestartFromLastCheckpoint<Chapter15Start>();
                     return true;
             }
             return base.OnInteract(command, attemptedname);

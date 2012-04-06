@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CandideTextAdventure
 {
-    partial class Room
+    internal partial class Room
     {
         public static void ParseInput(string input)
         {
@@ -35,6 +35,19 @@ namespace CandideTextAdventure
                 }
                 else if (split[0] == "inventory" || split[0] == "pack" || split[0] == "bag")
                 {
+                    if (CurrentRoom.GetType() == typeof (Chapter1.CandidesBedroom))
+                    {
+                        if (CurrentRoom.Items.Contains(((Chapter1.CandidesBedroom) (CurrentRoom)).clothes))
+                        {
+                            Terminal.WriteLine("You have nothing. Not even clothes on your back.");
+                            return;
+                        }
+                        if (Inventory.Count > 0)
+                        {
+                            Terminal.WriteLine("You have nothing but clothes, but they are not on your back.");
+                            return;
+                        }
+                    }
                     if (Inventory.Count == 0)
                         Terminal.WriteLine("You have nothing but the clothes on your back.");
                     else if (Inventory.Count == 1)
@@ -42,11 +55,11 @@ namespace CandideTextAdventure
                     else
                     {
                         Terminal.Write("You have " + Inventory[0].GetName() + ", ");
-                        for(int i = 1; i < Inventory.Count()-2; i++)
+                        for (int i = 1; i < Inventory.Count() - 2; i++)
                             Terminal.Write(Inventory[i].GetName() + ", ");
-                        Terminal.WriteLine("and " + Inventory[Inventory.Count()-1].GetName() + ".");
+                        Terminal.WriteLine("and " + Inventory[Inventory.Count() - 1].GetName() + ".");
                     }
-                    
+
                 }
                 else DisplayBadCommandError();
             }
@@ -166,7 +179,7 @@ namespace CandideTextAdventure
                         }
                     }
                 }
-                
+
                 if (!worked)
                     DisplayBadCommandError(ErrorType.InvalidItem);
             }
@@ -175,7 +188,7 @@ namespace CandideTextAdventure
                 if (!split.Contains("on"))
                 {
                     string target = "";
-                    for(int i = 1; i < split.Count(); i++)
+                    for (int i = 1; i < split.Count(); i++)
                     {
                         target += split[i];
                         if (i < split.Count() - 1)
@@ -241,8 +254,8 @@ namespace CandideTextAdventure
                         return;
                     }
                     bool targetworked = false;
-                    Item targetitem = null; 
-                    foreach(Item i in Inventory)
+                    Item targetitem = null;
+                    foreach (Item i in Inventory)
                         if (i.ValidNames.Contains(target))
                         {
                             targetitem = i;
@@ -264,7 +277,9 @@ namespace CandideTextAdventure
                     }
                     Debug.Assert(sourceitem != null);
                     Debug.Assert(targetitem != null);
-                    if (!((CurrentRoom.AttemptedDoubleItemUse(sourceitem, targetitem) && sourceitem.AttemptedDoubleItemUse(targetitem))))
+                    if (
+                        !((CurrentRoom.AttemptedDoubleItemUse(sourceitem, targetitem) &&
+                           sourceitem.AttemptedDoubleItemUse(targetitem))))
                         DisplayBadCommandError(ErrorType.InvalidUse);
                 }
             }

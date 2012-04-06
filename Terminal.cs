@@ -57,9 +57,16 @@ namespace CandideTextAdventure
                     Console.WriteLine();
             }
         }
-        public static ConsoleKeyInfo ReadKey()
+        public static ConsoleKeyInfo ReadKey(bool HideKeyPressed = true)
         {
-            return Console.ReadKey();
+            var tmp = Console.ReadKey();
+            if (!HideKeyPressed)
+                return tmp;
+            if(Char.IsLetter(tmp.KeyChar))
+                Console.CursorLeft--;
+            Console.Write(' ');
+            Console.CursorLeft--;
+            return tmp;
         }
         public static void Clear()
         {
@@ -69,6 +76,7 @@ namespace CandideTextAdventure
         {
             WriteLine(message);
             ReadKey();
+            WriteLine();
         }
 
         public static void RestartFromLastCheckpoint<T>(params Item[] inventory) where T : Room,new()

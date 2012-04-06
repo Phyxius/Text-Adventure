@@ -26,7 +26,7 @@ namespace CandideTextAdventure.Chapter1
 
     class CandidesBedroom : Room
     {
-        private Clothes clothes;
+        public Clothes clothes;
         private CandidesBed bed;
         public CandidesBedroom()
         {

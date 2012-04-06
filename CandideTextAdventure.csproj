@@ -53,6 +53,7 @@
     <Compile Include="Chapters\Chapter2.cs" />
     <Compile Include="Chapters\Chapter3.cs" />
     <Compile Include="Chapters\Chapter5.cs" />
+    <Compile Include="Chapters\Chapter16.cs" />
     <Compile Include="Generics.cs" />
     <Compile Include="InfoDumpRoom.cs" />
     <Compile Include="Inventory.cs" />
