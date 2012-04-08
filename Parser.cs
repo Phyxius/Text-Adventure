@@ -208,7 +208,10 @@ namespace CandideTextAdventure
                     }
                     if (!exists)
                     {
-                        DisplayBadCommandError(ErrorType.InvalidItem);
+                        string s = "@@use";
+                        for (int i = 1; i < split.Count(); i++)
+                            s += " " + split[i];
+                        ParseInput(s);
                         return;
                     }
                     if (!worked)
@@ -285,6 +288,8 @@ namespace CandideTextAdventure
             }
             else
             {
+                if (split[0] == "@@use")
+                    split[0] = "use";
                 string target = "";
                 for (int i = 1; i < split.Count(); i++)
                     target += split[i] + " ";

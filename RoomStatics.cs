@@ -52,7 +52,7 @@ namespace CandideTextAdventure
                     potentials = new[] {"I can't take that!", "How would I do that?"};
                     break;
                 case ErrorType.InvalidItem:
-                    potentials = new[] {"What is that?", "I don't see that"};
+                    potentials = new[] {"What is that?", "I don't see that!"};
                     break;
                 case ErrorType.InvalidLocation:
                     potentials = new string[] {"Where?", "I can't go there!"};

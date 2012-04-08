@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CandideTextAdventure.Chapter11;
 
 namespace CandideTextAdventure.Chapter5to10
 {
@@ -35,18 +36,18 @@ namespace CandideTextAdventure.Chapter5to10
 
         public override bool AttemptedExit(Room target)
         {
-            if (target.GetType() == typeof(WhippingPlatform))
+            if (target.GetType() == typeof(WhippingPlatform) || target.GetType() == typeof(Chapter5Begin))
                 return true;
             if (!hastried)
             {
                 Terminal.WriteLine("As you move towards the road, the guard roughly grabs you and shoves you back.");
                 Terminal.WriteLine("He says, \"Don't even think about trying to escape!\"");
                 hastried = true;
-                return true;
+                return false;
             }
             Terminal.WriteLine("As you try to escape, the guard draws his pistol and shoots you dead.");
             Terminal.RestartFromLastCheckpoint<Chapter5Begin>();
-            return true;
+            return false;
         }
     }
 
@@ -60,7 +61,7 @@ namespace CandideTextAdventure.Chapter5to10
 
     class CharredCorpse : GenericItem
     {
-        public CharredCorpse() : base("a charred corpse", "This corpse looks charred to the bone. Best not to dwell on such things.", "corpse", "charred corpse", "jew")
+        public CharredCorpse() : base("a charred corpse", "He's dead, Jim.", "corpse", "charred corpse", "jew")
         {
             
         }
@@ -223,6 +224,7 @@ namespace CandideTextAdventure.Chapter5to10
                 var tmp = new Inquisitor();
                 ((SecondWestRoad) (Room.CurrentRoom)).antagonist = tmp;
                 Room.CurrentRoom.Items.Add(tmp);
+                Room.CurrentRoom.Items.Remove(this);
                 return true;
             }
             return base.OnInteract(command, attemptedname);
@@ -329,7 +331,7 @@ namespace CandideTextAdventure.Chapter5to10
                         "The old lady suggests that the group run away before someone realizes that you killed two men. Everyone agrees, and you run away to the port.");
                     Terminal.WriteLine("Once at the port, Cunegonde notices that her jewels and money have been stolen, and you thus have no way of buying a fare.");
                     Terminal.WriteLine("Instead, you enlist in the Portuguese army as a captain, and set sail for the New World, with Cunegonde and the old woman in tow.");
-                    
+                    Room.ChangeRoom(new Chapter11Start());
                     return true;
                 case "burn":
                 case "bake":

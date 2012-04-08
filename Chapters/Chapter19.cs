@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CandideTextAdventure.Chapter22;
 
 namespace CandideTextAdventure.Chapter19
 {
@@ -112,8 +113,17 @@ namespace CandideTextAdventure.Chapter19
                 "The captain regretfully informs you that he cannot aide you in your quest, as Lady Cunegonde is the favored consort of the governor of Buenos Aires, and he will have you hanged for trying to take her away.");
             Terminal.WriteLine(
                 "Cacambo comes up with a brilliant compromise: He will spirit Lady Cunegonde away, and he will meet you in Venice with her.");
-            Terminal.WriteLine("The captain finds you another ship, and you each set upon your voyages.");
-            Terminal.EndOfDemo();
+            Terminal.WriteLine("The captain finds you another ship, and you each set out upon your voyages.");
+            Terminal.WriteLine(
+                "However, much of your remaining wealth is stolen before you leave, leaving you with but a handful of jewels.");
+            Terminal.Pause();
+            Terminal.WriteLine(
+                "Whilst on your journey to Venice, you meet a man named Martin, who claims to be the last Manichean in the world.");
+            Terminal.WriteLine("in order to pass the time on your voyage, you engage in philosophical banter with Martin, who is adamantly convinced that God has abandoned the world to the control of a malevolent power");
+            Terminal.WriteLine("On a whim, Martin and you decide to stop in Paris.");
+            Terminal.Pause();
+            Inventory.Clear();
+            ChangeRoom(new ParisSquare());
         }
     }
 }
