@@ -11,3 +11,12 @@ C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\Cand
 C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\obj\x86\Debug\CandideTextAdventure.exe
 C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\obj\x86\Debug\CandideTextAdventure.pdb
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\Music\Allemande.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\Music\Asturias.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\Music\Clarinet_Polka.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\Music\Concert_piece_No.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\Music\Crusell_Clarinet_concerto_No.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\Music\john williams.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\Music\Light Calvary.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\Music\Semper Fidelis.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\Music\The_Tale_of_Victor_Navorksi.ogg
