@@ -1,0 +1,24 @@
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\csfml-audio.dll
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\csfml-window.dll
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\libsndfile-1.dll
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\openal32.dll
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\Music\Allemande.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\Music\Asturias.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\Music\Clarinet_Polka.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\Music\Concert_piece_No.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\Music\Crusell_Clarinet_concerto_No.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\Music\john williams.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\Music\Light Cavalry.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\Music\mario game over.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\Music\Semper Fidelis.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\Music\silent.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\Music\The_Tale_of_Victor_Navorksi.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\CandideTextAdventure.exe
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\CandideTextAdventure.pdb
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\sfmlnet-audio.dll
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\sfmlnet-window.dll
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\sfmlnet-audio.pdb
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Release\sfmlnet-window.pdb
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\obj\x86\Release\CandideTextAdventure.exe
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\obj\x86\Release\CandideTextAdventure.pdb

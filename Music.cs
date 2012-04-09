@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using SFML.Audio;
 
 namespace CandideTextAdventure.MusicSystem
@@ -72,6 +73,7 @@ namespace CandideTextAdventure.MusicSystem
 
         private class MusicRedirect : Music
         {
+            
             public MusicRedirect(string filename)
                 : base(MusicDirectory + filename)
             {
@@ -84,6 +86,39 @@ namespace CandideTextAdventure.MusicSystem
             {
             }
 
+            public new void Play()
+            {
+                var t = new Thread(_play);
+                t.Start(this);
+            }
+
+            private static void _play(object obj)
+            {
+                var m = (MusicRedirect) obj;
+                m.Volume = 0;
+                ((Music) obj).Play();
+                for (int i = 0; i < MusicSystem.Volume; i++)
+                {
+                    m.Volume = i;
+                    Thread.Sleep(50);
+                }
+            }
+
+            public new void Stop()
+            {
+                var t = new Thread(_stop);
+                t.Start(this);
+            }
+
+            private static void _stop(object obj)
+            {
+                var m = (Music) obj;
+                for (float i = m.Volume-1; i > 0; i--)
+                {
+                    m.Volume = i;
+                    Thread.Sleep(50);
+                }
+            }
         }
     }
 }
