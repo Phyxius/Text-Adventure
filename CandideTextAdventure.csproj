@@ -103,7 +103,7 @@
     <None Include="Music\john williams.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Music\Light Calvary.ogg">
+    <None Include="Music\Light Cavalry.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Music\mario game over.ogg">

@@ -25,8 +25,8 @@ namespace CandideTextAdventure.Chapter5to10
             Terminal.WriteLine("Everyone except yourself, Pangloss, and one crewman drowns.");
             Terminal.WriteLine("As you wash up on the shore, Lisbon is struck by an earthquake.");
             Terminal.WriteLine(
-                "The Portuguese Inquisition decides that the best way to prevent such a thing from happening again is with a great and public auto=da-fe.");
-            Terminal.WriteLine("You are sentence to a flogging, a Jew to a burning, and Pangloss to a hanging.");
+                "The Portuguese Inquisition decides that the best way to prevent such a thing from happening again is with a great and public auto-da-fe.");
+            Terminal.WriteLine("You are sentenced to a flogging, a Jew to a burning, and Pangloss to a hanging.");
             Terminal.Pause();
             Terminal.WriteLine();
             Terminal.WriteLine("On the day of the auto-da-fe, you are led out to a public square.");
@@ -112,7 +112,7 @@ namespace CandideTextAdventure.Chapter5to10
 
         public override bool AttemptedGrab()
         {
-            Console.WriteLine("You pick up the sword and put it on your waist.");
+            Terminal.WriteLine("You pick up the sword and put it on your waist.");
             name = "a sword";
             Room.CurrentRoom.Items.Remove(this);
             Room.Inventory.Add(this);

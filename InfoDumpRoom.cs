@@ -72,13 +72,18 @@ namespace CandideTextAdventure
     {
         private readonly string description;
         private string name;
-        public InfoDumpPainting(string name, string description)
+        public InfoDumpPainting(string name, string description, params string[] usernames)
         {
             this.description = description;
             this.name = name;
             ValidNames.Add(name.ToLower());
-            ValidNames.Add("painting of " + name.ToLower());
-            ValidNames.Add("a painting of " + name.ToLower());
+            foreach(string username in usernames)
+            {
+                ValidNames.Add("painting of " + username.ToLower());
+                ValidNames.Add("a painting of " + username.ToLower());
+                ValidNames.Add("portrait of " + username.ToLower());
+                ValidNames.Add(username);
+            }
         }
 
         public override bool OnInteract(string command, string attemptedname)

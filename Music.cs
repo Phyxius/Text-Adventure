@@ -36,6 +36,8 @@ namespace CandideTextAdventure.MusicSystem
             musicRedirects[i2].Play();
             Switch = !Switch;
             IsPlaying = true;
+            if(Filename.ToLower() == "mario game over.ogg")
+                musicRedirects[i2].Loop = false;
         }
 
         public static void Pause()

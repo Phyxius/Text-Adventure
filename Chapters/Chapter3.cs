@@ -179,7 +179,7 @@ namespace CandideTextAdventure.Chapter3to4
                 case "give":
                     Terminal.WriteLine("As you hand him you only money, he looks into your eyes.");
                     Terminal.WriteLine("\"Master Candide?!\" he exclaims, \"Don't you regognize me, Dr. Pangloss?!\"");
-                    Terminal.WriteLine("You take Dr Pangloss to John and beg him to help Pangloss as he had helped you.");
+                    Terminal.WriteLine("You take Dr. Pangloss to John and beg him to help Pangloss as he had helped you.");
                     Terminal.WriteLine("John does as you ask, and two months pass.");
                     Terminal.Pause();
                     Terminal.WriteLine();
