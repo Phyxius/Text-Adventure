@@ -5,7 +5,7 @@ using CandideTextAdventure.Chapter16;
 using CandideTextAdventure.Chapter19;
 using CandideTextAdventure.Chapter22;
 using CandideTextAdventure.Chapter5to10;
-
+using CandideTextAdventure.Chapters;
 
 
 namespace CandideTextAdventure
@@ -13,16 +13,26 @@ namespace CandideTextAdventure
     class MainThread
     {
         public static bool ContinueRunning = true;
+        public static DateTime StartTime = DateTime.Now;
         static void Main(string[] args)
         {
-            Console.Title = "Candide Text Adventure";
+            Console.Title = "Candide: Text Adventure Edition";
+            MusicSystem.MusicSystem.ChangeSong("Allemande.ogg");
+            Terminal.WriteLine(
+                "Welcome to Candide: Text Adventure Edition!");
+            Terminal.WriteLine(
+                "In this Text Adventure, you take the role of Candide and will experience his adventures.");
+            //Terminal.WriteLine("This text adventure was programme");
+            Terminal.Pause();
             //Console.WindowWidth = Console.LargestWindowWidth;
             Room.ChangeRoom(new BeginningInfoDump());
-            //Room.ChangeRoom(new Chapter19Start());
+            //Room.ChangeRoom(new Credits());
+            //Console.WriteLine(MusicSystem.MusicSystem.MusicDirectory);
             while (ContinueRunning)
             {
                 Terminal.Write(">");
                 Room.ParseInput(Terminal.ReadLine());
+                //MusicSystem.MusicSystem.ChangeSong(Terminal.ReadLine());
                 Terminal.WriteLine();
             }
         }

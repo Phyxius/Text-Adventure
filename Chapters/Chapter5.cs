@@ -18,6 +18,7 @@ namespace CandideTextAdventure.Chapter5to10
 
         public override void Describe(bool isFirstEntry = false)
         {
+            MusicSystem.MusicSystem.ChangeSong("Asturias.ogg");
             Terminal.WriteLine(
                 "John the Anabaptist is obliged by some mercantile affairs to visit Lisbon. He has asked you and your teacher to join him.");
             Terminal.WriteLine("Within sight of the port, a terrible shipwreck occurs.");
@@ -328,6 +329,7 @@ namespace CandideTextAdventure.Chapter5to10
                         Terminal.WriteLine("With what? Some bad words? If only you had a sword...");
                         return true;
                     }
+                    MusicSystem.MusicSystem.ChangeSong("Concert_piece_No.ogg");
                     Terminal.WriteLine("You stab him. He dies.");
                     Terminal.WriteLine(
                         "The old lady suggests that the group run away before someone realizes that you killed two men. Everyone agrees, and you run away to the port.");

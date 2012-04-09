@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -11,6 +12,44 @@ namespace CandideTextAdventure
         public static void ParseInput(string input)
         {
             var split = input.ToLower().Split(' ');
+            if (split[0][0] == '!')
+            {
+                if (split[0] == "!")
+                {
+                    Terminal.WriteLine("Invalid command.");
+                    return;
+                }
+                switch (split[0].Substring(1))
+                {
+                    case "!quit":
+                        CandideTextAdventure.MainThread.ContinueRunning = false;
+                        return;
+                    case "!vol":
+                        if (split.Count() == 1)
+                            Terminal.WriteLine("The current volume level is " +
+                                               Math.Round(MusicSystem.MusicSystem.Volume) + ".");
+                        else
+                        {
+                            float val = 0;
+                            if (float.TryParse(split[1], out val))
+                            {
+                                MusicSystem.MusicSystem.SetVolume(val);
+                                Terminal.WriteLine("The volume has been set to " + Math.Round(val) + ".");
+                            }
+                            else Terminal.WriteLine("Invalid volume level.");
+                        }
+                        return;
+                    case "!pause":
+                        MusicSystem.MusicSystem.Pause();
+                        return;
+                    case "!play":
+                        MusicSystem.MusicSystem.Resume();
+                        return;
+                    default:
+                        Terminal.WriteLine("Invalid command.");
+                        return;
+                }
+            }
             if (split.Count() == 1)
             {
                 if (split[0] == "help")

@@ -10,7 +10,7 @@ namespace CandideTextAdventure
         //TODO: Automatic word wrap
         public static void WriteLine(string message = "")
         {
-            var rows = message.Split('\n');
+            /*var rows = message.Split('\n');
             for (int i = 0; i < rows.Length; i++)
             {
                 var words = rows[i].Split(' ');
@@ -28,7 +28,8 @@ namespace CandideTextAdventure
                     }
                 }
                 Console.WriteLine();
-            }
+            }*/
+            Write(message  + "\n");
         }
         public static string ReadLine()
         {
@@ -81,6 +82,7 @@ namespace CandideTextAdventure
 
         public static void RestartFromLastCheckpoint<T>(params Item[] inventory) where T : Room,new()
         {
+            MusicSystem.MusicSystem.ChangeSong("mario game over.ogg");
             WriteLine("Restart from last checkpoint?");
             Write("[y]es/[n]o: ");
             switch (ReadLine().ToLower())

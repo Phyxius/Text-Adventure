@@ -23,6 +23,7 @@ namespace CandideTextAdventure.Chapter11
             Terminal.WriteLine(
                 "The old woman continues to tell you of her adventures, ending in how her left buttock was cut off to serve as a meal for some Janizaries.");
             Terminal.Pause();
+            MusicSystem.MusicSystem.ChangeSong("Light Cavalry.ogg");
             Terminal.WriteLine(
                 "When you reach Buenos Aires, you hear tell that a ship has come from Lisbon in search of the murderer of the Grand Inquisitor, namely yourself, and that within the hour of you disembarking on the soil of Buenos Aires, you will be hanged.");
             Terminal.WriteLine(

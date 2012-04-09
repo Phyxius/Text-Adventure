@@ -16,6 +16,7 @@ namespace CandideTextAdventure.Chapter16
 
         public override void OnEnter()
         {
+            MusicSystem.MusicSystem.ChangeSong("john williams.ogg");
             Terminal.WriteLine(
                 "After killing your beloved Lady Cunegonde's Brother, you flee to the jungles of Paraguay with your trusty servant Cacambo.");
             Terminal.WriteLine(

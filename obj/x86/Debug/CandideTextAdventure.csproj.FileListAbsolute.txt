@@ -20,3 +20,5 @@ C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\Cand
 C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\Music\Light Calvary.ogg
 C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\Music\Semper Fidelis.ogg
 C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\Music\The_Tale_of_Victor_Navorksi.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\Music\silent.ogg
+C:\Users\Phyxius\Documents\Visual Studio 2010\Projects\CandideTextAdventure\CandideTextAdventure\bin\Debug\Music\mario game over.ogg

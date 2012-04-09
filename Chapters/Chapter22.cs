@@ -7,6 +7,7 @@ namespace CandideTextAdventure.Chapter22
 {
     internal class ParisSquare : GenericRoom
     {
+        private bool played;
         public ParisSquare()
             : base(
                 "a door to the city square", "You can go here.", "square", "city square", "the city square", "out",
@@ -18,6 +19,14 @@ namespace CandideTextAdventure.Chapter22
             Exits.Add(new ParisAbbey(tmp.bed, this));
             Inventory.Add(new FewGems());
             Items.Add(new StrangeStone());
+        }
+
+        public override void Describe(bool isFirstEntry = false)
+        {
+            if(!played)
+                MusicSystem.MusicSystem.ChangeSong("Crusell_Clarinet_concerto_No.ogg");
+            played = true;
+            base.Describe(isFirstEntry);
         }
     }
 

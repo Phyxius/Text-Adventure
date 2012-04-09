@@ -17,10 +17,14 @@ namespace CandideTextAdventure.Chapter1
                                                   new InfoDumpPainting("riot", "This painting depicts a clash between Catholics and Protestants, over different interpretations of the Bible. Protestantism was founded by Martin Luther, who was unhappy with sever Catholic practices including selling of indulgenecs. The Catholic Church took exception to his criticisms and attempts to start his own church, and tensions rapidly rose, although they have since died down in modern times."),
                                                   new InfoDumpPainting("destroyed town", "The town of Lisbon, Portugal was rocked by an earthquake in 1755 which destroyed much of the town. A short time later, a volcano erupted, again destroying much of the town. This destruction troubled Voltaire, who went on to write Candide three years later."), 
                                               }, new CandidesBedroom(), "On to the real adventure!",
-                                          "Welcome to Candide Text Adventure created by Shea Polansky, featuring original compositions/arrangements by Paul Hafley. Text by Paul Hafley and Shea Polansky.  You find yourself in a room with six portraits in it. The first is a portrait of Voltaire. The second is a depiction of a French salon. The third concerns itself with Leibniz. The fourth shows an auto-da-fe characteristic of the Spanish Inquisition (expected by nobody). The fith depicts a destroyed town. The final shows a riot of some kind. "
+                                          "You find yourself in a room with six portraits in it. The first is a portrait of Voltaire. The second is a depiction of a French salon. The third concerns itself with Leibniz. The fourth shows an auto-da-fe characteristic of the Spanish Inquisition (expected by nobody). The fith depicts a destroyed town. The final shows a riot of some kind. "
             )
         {
             
+        }
+        public override void OnEnter()
+        {
+
         }
     }
 
@@ -28,6 +32,7 @@ namespace CandideTextAdventure.Chapter1
     {
         public Clothes clothes;
         private CandidesBed bed;
+        private bool hasPlayed;
         public CandidesBedroom()
         {
             Exits.Add(new CandidesHallway(this));
@@ -44,6 +49,9 @@ namespace CandideTextAdventure.Chapter1
         }
         public override void OnEnter()
         {
+            if (!hasPlayed)
+                MusicSystem.MusicSystem.ChangeSong("The_Tale_of_Victor_Navorksi.ogg");
+            hasPlayed = true;
             if (bed.haskey)
                 return;
             Terminal.WriteLine("You awaken to the sound of your maid, Paquette, yelling for you to wake up.");
