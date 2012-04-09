@@ -22,6 +22,8 @@ namespace CandideTextAdventure
                 "Welcome to Candide: Text Adventure Edition!");
             Terminal.WriteLine(
                 "In this Text Adventure, you take the role of Candide and will experience his adventures.");
+            Terminal.WriteLine("However, we have to dump some extra information on you first.");
+            Terminal.WriteLine("Also, remember a list of common commands can be accessed by typing 'help' at the prompt.");
             //Terminal.WriteLine("This text adventure was programme");
             Terminal.Pause();
             //Console.WindowWidth = Console.LargestWindowWidth;

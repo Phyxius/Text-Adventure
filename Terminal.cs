@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace CandideTextAdventure
 {
     static class Terminal
     {
-        //TODO: Automatic word wrap
+        public static bool UseAnimation = true;
         public static void WriteLine(string message = "")
         {
             /*var rows = message.Split('\n');
@@ -46,18 +47,29 @@ namespace CandideTextAdventure
                     var word = words[j];
                     if (Console.BufferWidth - (Console.CursorLeft + 1) < word.Length)
                         Console.WriteLine();
-                    Console.Write(word);
+                    _Write(word);
                     if (j != words.Length - 1)
                     {
                         if (Console.BufferWidth == Console.CursorLeft)
                             Console.WriteLine();
-                        else Console.Write(' ');
+                        else _Write(" ");
                     }
                 }
                 if(i < rows.Length - 1)
                     Console.WriteLine();
             }
         }
+
+        private static void _Write(string message)
+        {
+            foreach (char c in message)
+            {
+                Console.Write(c);
+                if (UseAnimation)
+                    Thread.Sleep(20);
+            }
+        }
+
         public static ConsoleKeyInfo ReadKey(bool HideKeyPressed = true)
         {
             var tmp = Console.ReadKey();

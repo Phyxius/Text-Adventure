@@ -12,19 +12,19 @@ namespace CandideTextAdventure.Chapter1
                                                   new InfoDumpPainting("Voltaire",
                                                                        "François-Marie Arouet, also known by his pen name, Voltaire, was an 18th century French philosopher. In a time period dominated by optimisitic principles, he satirized many major doctrines, including several religions and political groups. "),
                                                   new InfoDumpPainting("Leibniz", "Gottfried Wilhelm von Leibniz was a German philosopher who pioneered the idea of philosophical optimism. Also a mathematician, he invented the first mass-produced calculator. His idea of philosophical optimism had enormous influence on the writings and ideas of later philosophers, including Voltaire. Philosophical optimism is the principle that due to the presumed fact that a perfect, all knowing God created the world, that everything in the world and produced by the world is/was perfect. "),
-                                                  new InfoDumpPainting("salon", "French salons were the center of culture and discussion during Voltaire's time, the Enlightenment. Voltaire would have spent much time in these."),
-                                                  new InfoDumpPainting("auto-da-fe", "Auto-da-fe's were performed by the Spanish and Portugese Inquisitions as acts of public penence. They were often held after a major disaster or problem, in the belief that God caused the problem to happen, and needed to be placated with prayer and burnings."),
-                                                  new InfoDumpPainting("riot", "This painting depicts a clash between Catholics and Protestants, over different interpretations of the Bible. Protestantism was founded by Martin Luther, who was unhappy with sever Catholic practices including selling of indulgenecs. The Catholic Church took exception to his criticisms and attempts to start his own church, and tensions rapidly rose, although they have since died down in modern times."),
-                                                  new InfoDumpPainting("destroyed town", "The town of Lisbon, Portugal was rocked by an earthquake in 1755 which destroyed much of the town. A short time later, a volcano erupted, again destroying much of the town. This destruction troubled Voltaire, who went on to write Candide three years later."), 
+                                                  new InfoDumpPainting("a salon", "French salons were the center of culture and discussion during Voltaire's time, the Enlightenment. Voltaire would have spent much time in these."),
+                                                  new InfoDumpPainting("a auto-da-fe", "Auto-da-fe's were performed by the Spanish and Portugese Inquisitions as acts of public penence. They were often held after a major disaster or problem, in the belief that God caused the problem to happen, and needed to be placated with prayer and burnings."),
+                                                  new InfoDumpPainting("a riot", "This painting depicts a clash between Catholics and Protestants, over different interpretations of the Bible. Protestantism was founded by Martin Luther, who was unhappy with sever Catholic practices including selling of indulgenecs. The Catholic Church took exception to his criticisms and attempts to start his own church, and tensions rapidly rose, although they have since died down in modern times."),
+                                                  new InfoDumpPainting("a destroyed town", "The town of Lisbon, Portugal was rocked by an earthquake in 1755 which destroyed much of the town. A short time later, a volcano erupted, again destroying much of the town. This destruction troubled Voltaire, who went on to write Candide three years later."), 
                                               }, new CandidesBedroom(), "On to the real adventure!",
-                                          "You find yourself in a room with six portraits in it. The first is a portrait of Voltaire. The second is a depiction of a French salon. The third concerns itself with Leibniz. The fourth shows an auto-da-fe characteristic of the Spanish Inquisition (expected by nobody). The fith depicts a destroyed town. The final shows a riot of some kind. "
+                                          "You find yourself in a room with six portraits in it. The first is a portrait of Voltaire. The second is a depiction of a French salon. The third concerns itself with Leibniz. The fourth shows an auto-da-fe characteristic of the Spanish Inquisition (expected by nobody). The fith depicts a destroyed town. The final shows a riot of some kind. \n"
             )
         {
             
         }
         public override void OnEnter()
         {
-
+            Terminal.WriteLine();
         }
     }
 

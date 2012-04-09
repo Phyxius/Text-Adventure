@@ -21,10 +21,10 @@ namespace CandideTextAdventure
                 }
                 switch (split[0].Substring(1))
                 {
-                    case "!quit":
+                    case "quit":
                         CandideTextAdventure.MainThread.ContinueRunning = false;
                         return;
-                    case "!vol":
+                    case "vol":
                         if (split.Count() == 1)
                             Terminal.WriteLine("The current volume level is " +
                                                Math.Round(MusicSystem.MusicSystem.Volume) + ".");
@@ -39,11 +39,15 @@ namespace CandideTextAdventure
                             else Terminal.WriteLine("Invalid volume level.");
                         }
                         return;
-                    case "!pause":
+                    case "pause":
                         MusicSystem.MusicSystem.Pause();
                         return;
-                    case "!play":
+                    case "play":
                         MusicSystem.MusicSystem.Resume();
+                        return;
+                    case "scranim":
+                        Terminal.UseAnimation = !Terminal.UseAnimation;
+                        Terminal.WriteLine("Text scrolling animation turned " + (Terminal.UseAnimation ? "on" : "off") + ".");
                         return;
                     default:
                         Terminal.WriteLine("Invalid command.");
@@ -56,11 +60,20 @@ namespace CandideTextAdventure
                 {
                     Terminal.WriteLine("List of Commands:\n");
                     Terminal.WriteLine("Go {direction}: go in a direction on the map");
-                    Terminal.WriteLine("Talk {name}: talk to a person");
                     Terminal.WriteLine("Take {item name}: pick up an item");
                     Terminal.WriteLine("Help: display command list");
                     Terminal.WriteLine("Inventory: display inventory items");
                     Terminal.WriteLine("Examine {object}: investigate an object in the room");
+                    Terminal.WriteLine("Look: look around the room and display what you see");
+                    Terminal.WriteLine("!pause: pause music");
+                    Terminal.WriteLine("!play: resume music");
+                    Terminal.WriteLine("!vol: displys the current music volume");
+                    Terminal.WriteLine("!vol {level}: set the music volume (where level is a number between 1 and 100)");
+                    Terminal.WriteLine("!scranim: toggle the text-scrolling animation");
+                    Terminal.WriteLine("");
+                    Terminal.WriteLine(
+                        "Remember, commands are not case-sensitive, and please avoid using 'the' where possible.");
+
                     return;
                     //do for save and load
                 }
