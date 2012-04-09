@@ -41,7 +41,7 @@ namespace CandideTextAdventure.Chapter19
 
         public override void Describe(bool isFirstEntry = false)
         {
-            Terminal.WriteLine("You don't need to go here right now.");
+            Terminal.WriteLine("You don't need to go here right now.\n");
             ChangeRoom(Exits[0]);
         }
     }
@@ -82,7 +82,7 @@ namespace CandideTextAdventure.Chapter19
                 "the town's harbor", "You can go here.", "harbor", "the town's harbor", "town's harbor",
                 "the towns harbor", "towns harbor")
         {
-
+            Exits.Add(new SecondSquare(this));
         }
     }
 
@@ -91,7 +91,7 @@ namespace CandideTextAdventure.Chapter19
         public SecondSquare(SecondHarbor prev)
             : base(
                 "a road leading to the Town Square", "You can go here.", "town square",
-                "road leading to the town square", "a road leading to the town square")
+                "road leading to the town square", "a road leading to the town square", "square")
         {
             Exits.Add(prev);
             Exits.Add(new SecondInn());

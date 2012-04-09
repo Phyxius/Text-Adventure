@@ -39,11 +39,10 @@ namespace CandideTextAdventure.Chapter16
 
     class ElDoradoEntrance : GenericRoom
     {
-        public ElDoradoEntrance() : base("the front of the inn", "You can go here.", "")
+        public ElDoradoEntrance() : base("a door leading outside", "You can go here.", "outside")
         {
             Items.Add(new Monument());
-            Items.Add(new Monument());
-            Exits.Add(new Inn2());
+            Exits.Add(new Inn2(this));
         }
     }
 
@@ -69,9 +68,24 @@ namespace CandideTextAdventure.Chapter16
 
     class Inn2 : GenericRoom
     {
-        public Inn2()  : base("an inn", "You can hear rowdy laughter and unintelligible speach emanating from inside.", "inn", "inside", "inside inn")
+        public Inn2(Room prev)  : base("an inn", "You can hear rowdy laughter and unintelligible speach emanating from inside.", "inn", "inside", "inside inn")
         {
-            
+            Items.Add(new PlateAgain());
+            Exits.Add(prev);
+        }
+
+        public override void Describe(bool isFirstEntry = false)
+        {
+            Terminal.WriteLine("You order a delicious meal.");
+            base.Describe(isFirstEntry);
+        }
+
+        public override bool AttemptedExit(Room target)
+        {
+            if(target.GetType() == typeof(ElDoradoIntermission))
+                return true;
+            Terminal.WriteLine("Wait! You haven't finished your dinner!");
+            return false;
         }
     }
 

@@ -123,8 +123,26 @@ namespace CandideTextAdventure.Chapter11
 
         public override bool AttemptedGrab()
         {
-            Terminal.WriteLine("You're no art theif!");
+            Terminal.WriteLine("You're no art thief!");
             return true;
+        }
+
+        public override bool OnInteract(string command, string attemptedname)
+        {
+            if (command == "stab" || command == "destroy" || command == "hit")
+            {
+                if (Room.Inventory.Count > 0)
+                {
+                    Terminal.WriteLine("You destroy the Mona Lisa.");
+                    Terminal.WriteLine(
+                        "You feel a great disturbance in the Force, as if millions of art critics cried out in terror, and were suddenly silenced.");
+                    Room.CurrentRoom.Items.Remove(this);
+                    return true;
+                }
+                Terminal.WriteLine("With what?");
+                return true;
+            }
+            return base.OnInteract(command, attemptedname);
         }
     }
 
@@ -267,6 +285,8 @@ namespace CandideTextAdventure.Chapter11
 
         public override bool AttemptedExit(Room target)
         {
+            if(target.GetType() == typeof(Chapter16.Chapter16Start))
+                return true;
             if(Items.Contains(brother))
                 return true;
             Terminal.WriteLine("As you attempt to leave, Cunegonde's borther stabs you dead.");
@@ -291,7 +311,7 @@ namespace CandideTextAdventure.Chapter11
         public CunegondesBrother()
             : base(
                 "Cunegonde's brother",
-                "This is Cunegonde's brother, the son of the Baron of Thunder-ten-tronckh. He looks very angry.", "cunegonde's brother", "cunegondes brother", "brother")
+                "This is Cunegonde's brother. He looks very angry.", "cunegonde's brother", "cunegondes brother", "brother")
         {
             var tmp = new List<string>();
             foreach (string s in ValidNames)

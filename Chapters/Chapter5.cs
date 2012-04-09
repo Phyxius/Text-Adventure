@@ -174,6 +174,8 @@ namespace CandideTextAdventure.Chapter5to10
 
         public override bool AttemptedExit(Room target)
         {
+            if(target.GetType() == typeof(Chapter11Start))
+                return true;
             var t = antagonist.GetType();
             if (t == typeof(SecondFoodPlate))
                 Terminal.WriteLine("Wait! You haven't finished your dinner!");
@@ -331,6 +333,7 @@ namespace CandideTextAdventure.Chapter5to10
                         "The old lady suggests that the group run away before someone realizes that you killed two men. Everyone agrees, and you run away to the port.");
                     Terminal.WriteLine("Once at the port, Cunegonde notices that her jewels and money have been stolen, and you thus have no way of buying a fare.");
                     Terminal.WriteLine("Instead, you enlist in the Portuguese army as a captain, and set sail for the New World, with Cunegonde and the old woman in tow.");
+                    Terminal.Pause();
                     Room.ChangeRoom(new Chapter11Start());
                     return true;
                 case "burn":
