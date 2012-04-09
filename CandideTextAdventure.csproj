@@ -32,6 +32,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>CandideTextAdventure.MainThread</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="sfmlnet-audio">
       <HintPath>..\..\..\..\Misc. Coding\Libraries\SFML 2\trunk\dotnet\src\Audio\bin\Debug\sfmlnet-audio.dll</HintPath>
@@ -71,6 +77,7 @@
     <Compile Include="Terminal.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="icon.ico" />
     <Content Include="csfml-audio.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

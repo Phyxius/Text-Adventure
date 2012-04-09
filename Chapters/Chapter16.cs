@@ -128,7 +128,7 @@ namespace CandideTextAdventure.Chapter16
             Terminal.WriteLine(
                 "The waitress refuses it, saying in portuguese (as translated by Cacambo), \"You do not need to pay here. All inns are funded by the government for the good of the people.\"");
             Terminal.WriteLine(
-                "The waitress then tells you that you are in the city of El Dorado, and that since you are obviously strangers, you should go to west sthe palace so the King may properly welcome you.");
+                "The waitress then tells you that you are in the city of El Dorado, and that since you are obviously strangers, you should go West to the palace so the King may properly welcome you.");
             Terminal.Pause();
             Terminal.WriteLine(
                 "You travel West with Cacambo until you see the road turn towards the North, where you see the entrance to the Palace.");

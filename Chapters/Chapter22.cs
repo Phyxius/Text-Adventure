@@ -150,15 +150,15 @@ namespace CandideTextAdventure.Chapter22
                 Terminal.WriteLine("You bribe them with the last of your gems, and run off with Martin back to sea.");
                 Terminal.Pause();
                 Terminal.WriteLine(
-                    "When you arrive in Venice, you meet up again with Paquette and Cacambo. Cacambo tells you that Cunegonde is in Constantinople");
+                    "When you arrive in Venice, you meet up again with Paquette and Cacambo. Cacambo tells you that Cunegonde is in Constantinople.");
                 Terminal.WriteLine("You set off for Constantinople at once.");
                 Terminal.Pause();
                 Terminal.WriteLine(
-                    "When you arrive in Constantinople, you find Lady Cunegonde, Dr. Pangloss, and the Baron of Thunder-ten-tronkch");
+                    "When you arrive in Constantinople, you find Lady Cunegonde, Dr. Pangloss, and the Baron of Thunder-ten-tronkch.");
                 Terminal.WriteLine(
                     "You announce to the Baron your intent to marry Cunegonde, and he does not take it very well. Rather than add another murder to your conscience, you sell him into slavery, marry Cunegonde, and buy a small farm in Turkey for everyone to live on.");
                 Terminal.WriteLine("And everyone lived happily ever after!");
-                Terminal.EndOfDemo();
+                Terminal.Pause();
             }
             else if (!HasEntered)
             {

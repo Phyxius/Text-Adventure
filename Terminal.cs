@@ -87,8 +87,9 @@ namespace CandideTextAdventure
         }
         public static void Pause(string message = "Press any key to continue...")
         {
-            WriteLine(message);
+            Write(message);
             ReadKey();
+            WriteLine();
             WriteLine();
         }
 

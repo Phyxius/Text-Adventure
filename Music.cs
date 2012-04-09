@@ -13,11 +13,13 @@ namespace CandideTextAdventure.MusicSystem
         private static bool Switch;
         public static float Volume { get; private set; }
         public static bool IsPlaying { get; private set; }
+        public static string LastSong { get; private set; }
         static MusicSystem()
         {
             MusicDirectory = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) +
                              "\\music\\";
             Volume = 100;
+            LastSong = "NONE";
             musicRedirects = new MusicRedirect[2];
             for (int i = 0; i < musicRedirects.Count(); i++)
             {
@@ -38,6 +40,7 @@ namespace CandideTextAdventure.MusicSystem
             IsPlaying = true;
             if(Filename.ToLower() == "mario game over.ogg")
                 musicRedirects[i2].Loop = false;
+            LastSong = Filename;
         }
 
         public static void Pause()

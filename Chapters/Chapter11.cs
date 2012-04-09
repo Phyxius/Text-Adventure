@@ -56,6 +56,8 @@ namespace CandideTextAdventure.Chapter11
 
         public override void Describe(bool isFirstEntry = false)
         {
+            if (MusicSystem.MusicSystem.LastSong != "Light Cavalry.ogg")
+                MusicSystem.MusicSystem.ChangeSong("Light Cavalry.ogg");
             if (!spoken)
             {
                 spoken = true;
@@ -275,6 +277,12 @@ namespace CandideTextAdventure.Chapter11
 
         public override void Describe(bool isFirstEntry = false)
         {
+            if (Inventory.Count > 0 && Inventory[0].GetType() == typeof(Crowbar))
+            {
+                Inventory.Clear();
+                Terminal.WriteLine(
+                    "As you walk into the dining room, Cunegonde's brother notices your crowbar. He takes it from you and thanks you for finding it for him.");
+            }
             Terminal.WriteLine("You eat dinner with Cunegonde's brother and Cacambo.");
             Terminal.WriteLine(
                 "After dinner, Cunegonde's brother dismisses Cacambo to his room and invites you chat with him.");
@@ -291,6 +299,8 @@ namespace CandideTextAdventure.Chapter11
             if(Items.Contains(brother))
                 return true;
             Terminal.WriteLine("As you attempt to leave, Cunegonde's borther stabs you dead.");
+            if(Inventory.Count == 0)
+                Terminal.WriteLine("If only you had a sword! Then you could kill him before he killed you.");
             Terminal.RestartFromLastCheckpoint<Chapter15Start>();
             return false;
         }

@@ -27,7 +27,8 @@ namespace CandideTextAdventure
             //Terminal.WriteLine("This text adventure was programme");
             Terminal.Pause();
             //Console.WindowWidth = Console.LargestWindowWidth;
-            Room.ChangeRoom(new BeginningInfoDump());
+           // Room.ChangeRoom(new BeginningInfoDump());
+            Room.ChangeRoom(new Credits());
             //Room.ChangeRoom(new Credits());
             //Console.WriteLine(MusicSystem.MusicSystem.MusicDirectory);
             while (ContinueRunning)

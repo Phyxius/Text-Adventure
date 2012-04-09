@@ -25,7 +25,7 @@ namespace CandideTextAdventure.Chapters
             var str = "Playing Time:\n\n";
             var tmp = DateTime.Now - MainThread.StartTime;
             tmp = tmp.Duration();
-            str+=Math.Round(tmp.TotalHours)+":"+tmp.Minutes+":" + tmp.Seconds;
+            str += Math.Round(tmp.TotalHours)+":"+tmp.Minutes+":" + tmp.Seconds;
             credits.Add(str);
             credits.Add("Thanks for Playing!");
             foreach (string s in credits)
@@ -47,8 +47,7 @@ namespace CandideTextAdventure.Chapters
                 Thread.Sleep(5000);
             }
 
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
+            Terminal.Pause("Press any key to exit...");
             MainThread.ContinueRunning = false;
         }
     }
