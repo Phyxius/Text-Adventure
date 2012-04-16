@@ -140,20 +140,60 @@ namespace CandideTextAdventure.Chapter16
     {
         public PalaceRoad()  : base("a road", "You can go here.", "road", "south")
         {
+            Exits.Add(new PalaceFoyer());
+        }
+    }
+
+    class PalaceFoyer : GenericRoom
+    {
+        public PalaceFoyer() :  base("the entrance to the Palace", "You can go here.", "palace", "entrance", "entrance to the palace", "the entrance", "the entrance to the palace")
+        {
+            Items.Add(new KingStatue());
+            Items.Add(new SignForTheUmpteenthTime());
             Exits.Add(new Palace());
+        }
+
+        public override void  Describe(bool isFirstEntry = false)
+        {
+            Terminal.WriteLine("When you walk into the palace's foyer, a guard approaches you and says, \"The King of El Dorado would like to see you whenever you are ready.\"");
+            Terminal.WriteLine("The guard then walks back to his post outside that palace.");
+            base.Describe(isFirstEntry);
+        }
+    }
+
+    internal class KingStatue : GenericItem
+    {
+        public KingStatue()
+            : base(
+                "a large golden statue",
+                "This statue depits a man with a crown on his head, presumably the King. An inscription on a plaque on the bottom reads, \"Welcome to El Dorado, City of Gold! This city was fabled by the Spaniards and sought out by many search parties, but never found.\"",
+                "statue", "golden statue", "large golden statue", "a large golden statue", "large statue", "gold statue",
+                "large gold statue")
+        {
+
+        }
+    }
+
+    class SignForTheUmpteenthTime : GenericItem
+    {
+        public SignForTheUmpteenthTime() : base("a sign", "This sign reads, \"The Spanish have conquered most of Latin America, but thankfully not our city. Their biggest two reasons for conquering our neighbors is an attempt to spread their religion, and to loot our riches.\"", 
+            "sign", "a sign")
+
+        {
+            
         }
     }
 
     class Palace : GenericRoom
     {
-        public Palace() : base("the entrance to the Palace", "You can go here.", "palace", "entrance", "entrance to the palace", "the entrance", "the entrance to the palace")
+        public Palace() : base("the entrance to the King's Audience Room", "You can go here.", "palace", "entrance", "entrance to the audience room", "the audience room", "the entrance to the audience room", "audience room")
         {
             
         }
 
         public override void OnEnter()
         {
-            Terminal.WriteLine("You enter the palace and meet with the king, who tells you all about this strange city.");
+            Terminal.WriteLine("You enter the King's Audience Room and meet with the king, who tells you all about this strange city.");
             Terminal.WriteLine(
                 "Eventually, he gives you quarters in the palace, where you stay for some time, enjoying the comforts of the city.");
             Terminal.Pause();

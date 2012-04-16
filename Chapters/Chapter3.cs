@@ -75,7 +75,7 @@ namespace CandideTextAdventure.Chapter3to4
         private bool spoken = false;
         public NorthRoad()
         {
-            Items.Add(new John1());
+            Items.Add(new James1());
             propername = "a road leading north";
             Names.Add("north");
             Names.Add("road leading north");
@@ -87,9 +87,9 @@ namespace CandideTextAdventure.Chapter3to4
             {
                 Terminal.WriteLine(
                     "As you approach the man, he says, \"I saw your predicament, and I feel that you were treated wrongly. Here is two florins.\"");
-                Terminal.WriteLine("He introduces himself as John the Anabaptist.");
+                Terminal.WriteLine("He introduces himself as James the Anabaptist.");
                 Terminal.WriteLine(
-                    "John also offers to teach you to work in fabric-making. You fall on your knees at his feet and thank him for his generosity.");
+                    "James also offers to teach you to work in fabric-making. You fall on your knees at his feet and thank him for his generosity.");
                 Terminal.WriteLine("You also remember the beggar you saw earlier.");
                 Terminal.WriteLine(
                     "You think to yourself, \"That beggar has much greater need of this money than I. I should share my luck with him.\"");
@@ -109,9 +109,9 @@ namespace CandideTextAdventure.Chapter3to4
         }
     }
 
-    class John1 : GenericItem
+    class James1 : GenericItem
     {
-        public John1():base("John the Anabaptist", "He looks very friendly.", "john", "john the anabaptist", "the anabaptist", "anabaptist") //fuck yeah params
+        public James1():base("James the Anabaptist", "He looks very friendly.", "james", "james the anabaptist", "the anabaptist", "anabaptist") //fuck yeah params
         {
             
         }
@@ -179,8 +179,8 @@ namespace CandideTextAdventure.Chapter3to4
                 case "give":
                     Terminal.WriteLine("As you hand him you only money, he looks into your eyes.");
                     Terminal.WriteLine("\"Master Candide?!\" he exclaims, \"Don't you regognize me, Dr. Pangloss?!\"");
-                    Terminal.WriteLine("You take Dr. Pangloss to John and beg him to help Pangloss as he had helped you.");
-                    Terminal.WriteLine("John does as you ask, and two months pass.");
+                    Terminal.WriteLine("You take Dr. Pangloss to James and beg him to help Pangloss as he had helped you.");
+                    Terminal.WriteLine("James does as you ask, and two months pass.");
                     Terminal.Pause();
                     Terminal.WriteLine();
                     Room.ChangeRoom(new Chapter5Begin());

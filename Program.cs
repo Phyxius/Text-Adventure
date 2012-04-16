@@ -28,7 +28,7 @@ namespace CandideTextAdventure
             Terminal.Pause();
             //Console.WindowWidth = Console.LargestWindowWidth;
             Room.ChangeRoom(new BeginningInfoDump());
-            //Room.ChangeRoom(new Credits());
+            //Room.ChangeRoom(new Chapter16Start());
             //Room.ChangeRoom(new Credits());
             //Console.WriteLine(MusicSystem.MusicSystem.MusicDirectory);
             while (ContinueRunning)

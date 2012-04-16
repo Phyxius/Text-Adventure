@@ -46,7 +46,6 @@ namespace CandideTextAdventure.Chapters
                 Console.CursorTop = Console.WindowHeight-1;
                 Thread.Sleep(5000);
             }
-
             Terminal.Pause("Press any key to exit...");
             MainThread.ContinueRunning = false;
         }

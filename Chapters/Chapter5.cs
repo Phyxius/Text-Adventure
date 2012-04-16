@@ -20,7 +20,7 @@ namespace CandideTextAdventure.Chapter5to10
         {
             MusicSystem.MusicSystem.ChangeSong("Asturias.ogg");
             Terminal.WriteLine(
-                "John the Anabaptist is obliged by some mercantile affairs to visit Lisbon. He has asked you and your teacher to join him.");
+                "James the Anabaptist is obliged by some mercantile affairs to visit Lisbon. He has asked you and your teacher to join him.");
             Terminal.WriteLine("Within sight of the port, a terrible shipwreck occurs.");
             Terminal.WriteLine("Everyone except yourself, Pangloss, and one crewman drowns.");
             Terminal.WriteLine("As you wash up on the shore, Lisbon is struck by an earthquake.");
