@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using CandideTextAdventure.Chapter16;
 
 namespace CandideTextAdventure.Chapter11
@@ -11,7 +8,6 @@ namespace CandideTextAdventure.Chapter11
         public Chapter11Start()
             : base("a room", "you can go here")
         {
-
         }
 
         public override void OnEnter()
@@ -43,7 +39,7 @@ namespace CandideTextAdventure.Chapter11
 
     internal class Chapter15Start : GenericRoom
     {
-        private bool spoken = false;
+        private bool spoken;
 
         public Chapter15Start()
             : base(
@@ -75,20 +71,18 @@ namespace CandideTextAdventure.Chapter11
                 "a bed", "This bed is also not very comfortable. It seems there are no comfortable beds in the world.",
                 "bed", "the bed")
         {
-
         }
     }
 
     internal class SwordPlaque : GenericItem
     {
-        public bool examined = false;
+        public bool examined;
 
         public SwordPlaque()
             : base(
                 "a sword on a plaque", "The plaque reads, \"Excalibur, weapon of Kings.\"", "sword", "plaque",
                 "sword on plaque", "excalibur", "excalibur on a plaque")
         {
-
         }
 
         public override bool OnInteract(string command, string attemptedname)
@@ -121,7 +115,6 @@ namespace CandideTextAdventure.Chapter11
                 "The woman in the painting looks Italian. She is smiling as though she knows something that you do not. Much of the artist's signature has rubbed off, but you can make out a few letters: \"-inci\".",
                 "painting", "painting of woman", "painting of a woman", "woman")
         {
-
         }
 
         public override bool AttemptedGrab()
@@ -184,7 +177,7 @@ namespace CandideTextAdventure.Chapter11
                 Room.CurrentRoom.Items.Remove(target);
                 return true;
             }
-            if (target.GetType() == typeof(CunegondesBrother))
+            if (target.GetType() == typeof (CunegondesBrother))
             {
                 Room.ParseInput("stab brother");
                 return true;
@@ -213,14 +206,15 @@ namespace CandideTextAdventure.Chapter11
             Exits.Add(new DinnerRoom(this));
             Items.Add(new Crowbar());
         }
-
     }
 
     internal class Crowbar : GenericItem
     {
         public Crowbar()
             : base(
-                "a crowbar lying on the ground", "Some crudely carved letters on the crowbar read, \"Property of G. Freeman. If found, return to Black Mesa Research Facility, Black Mesa, New Mexico.\"", "crowbar", "crowbar lying on the ground",
+                "a crowbar lying on the ground",
+                "Some crudely carved letters on the crowbar read, \"Property of G. Freeman. If found, return to Black Mesa Research Facility, Black Mesa, New Mexico.\"",
+                "crowbar", "crowbar lying on the ground",
                 "crowbar on the ground")
         {
             propername = name;
@@ -263,7 +257,8 @@ namespace CandideTextAdventure.Chapter11
 
     internal class DinnerRoom : GenericRoom
     {
-        private CunegondesBrother brother;
+        private readonly CunegondesBrother brother;
+
         public DinnerRoom(Chapter15Hallway prev)
             : base(
                 "the door to the dining room", "You can go here.", "dining room", "the door to the dining room",
@@ -277,7 +272,7 @@ namespace CandideTextAdventure.Chapter11
 
         public override void Describe(bool isFirstEntry = false)
         {
-            if (Inventory.Count > 0 && Inventory[0].GetType() == typeof(Crowbar))
+            if (Inventory.Count > 0 && Inventory[0].GetType() == typeof (Crowbar))
             {
                 Inventory.Clear();
                 Terminal.WriteLine(
@@ -294,12 +289,12 @@ namespace CandideTextAdventure.Chapter11
 
         public override bool AttemptedExit(Room target)
         {
-            if(target.GetType() == typeof(Chapter16.Chapter16Start))
+            if (target.GetType() == typeof (Chapter16Start))
                 return true;
-            if(Items.Contains(brother))
+            if (Items.Contains(brother))
                 return true;
             Terminal.WriteLine("As you attempt to leave, Cunegonde's borther stabs you dead.");
-            if(Inventory.Count == 0)
+            if (Inventory.Count == 0)
                 Terminal.WriteLine("If only you had a sword! Then you could kill him before he killed you.");
             Terminal.RestartFromLastCheckpoint<Chapter15Start>();
             return false;
@@ -313,7 +308,6 @@ namespace CandideTextAdventure.Chapter11
                 "a door leading outside", "You can see light streaming in from outside.", "outside",
                 "door leading outside")
         {
-
         }
     }
 
@@ -322,26 +316,26 @@ namespace CandideTextAdventure.Chapter11
         public CunegondesBrother()
             : base(
                 "Cunegonde's brother",
-                "This is Cunegonde's brother. He looks very angry.", "cunegonde's brother", "cunegondes brother", "brother")
+                "This is Cunegonde's brother. He looks very angry.", "cunegonde's brother", "cunegondes brother",
+                "brother")
         {
             var tmp = new List<string>();
             foreach (string s in ValidNames)
             {
                 tmp.Add("with " + s);
                 tmp.Add("to " + s);
-
             }
             ValidNames.AddRange(tmp);
         }
 
         public override bool OnInteract(string command, string attemptedname)
         {
-            switch(command)
+            switch (command)
             {
                 case "kill":
                 case "stab":
-                case"murder":
-                    if (Room.Inventory.Count > 0 && Room.Inventory[0].GetType() == typeof(Excalibur))
+                case "murder":
+                    if (Room.Inventory.Count > 0 && Room.Inventory[0].GetType() == typeof (Excalibur))
                     {
                         Terminal.WriteLine("You kill Cunegonde's brother.");
                         Terminal.Pause();
@@ -363,6 +357,4 @@ namespace CandideTextAdventure.Chapter11
             return base.OnInteract(command, attemptedname);
         }
     }
-
 }
-

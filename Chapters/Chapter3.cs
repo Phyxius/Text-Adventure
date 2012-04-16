@@ -3,12 +3,12 @@ using CandideTextAdventure.Chapter5to10;
 
 namespace CandideTextAdventure.Chapter3to4
 {
-    class ChapterThreeBeginning : Room
+    internal class ChapterThreeBeginning : Room
     {
         public ChapterThreeBeginning()
         {
             propername = "a road leading west";
-            Names.AddRange(new string[] {"west", "road", "road leading west"});
+            Names.AddRange(new[] {"west", "road", "road leading west"});
             Exits.Add(new EastRoad());
         }
 
@@ -24,23 +24,27 @@ namespace CandideTextAdventure.Chapter3to4
         }
     }
 
-    class Beggar : GenericItem
+    internal class Beggar : GenericItem
     {
         public Beggar()
-            : base("a grimy beggar", "This beggar seems awfully familiar. It is hard to tell through the layers of grime and sickness.",
-                "beggar", "to beggar", "the beggar", "to the beggar", "the grimy beggar", "grimy beggar", "to the grimy beggar", "pangloss", "dr. pangloss", "doctor pangloss", "to pangloss", "to doctor pangloss", "to dr. pangloss")
+            : base(
+                "a grimy beggar",
+                "This beggar seems awfully familiar. It is hard to tell through the layers of grime and sickness.",
+                "beggar", "to beggar", "the beggar", "to the beggar", "the grimy beggar", "grimy beggar",
+                "to the grimy beggar", "pangloss", "dr. pangloss", "doctor pangloss", "to pangloss",
+                "to doctor pangloss", "to dr. pangloss")
         {
-
         }
 
         public override bool OnInteract(string command, string attemptedname)
         {
-            switch(command)
+            switch (command)
             {
                 case "speak":
                 case "talk":
-                    if (attemptedname.Contains("pangloss"))                        
-                        Terminal.WriteLine("No fair! You're not supposed to know that!\nStop trying to derail the story!");
+                    if (attemptedname.Contains("pangloss"))
+                        Terminal.WriteLine(
+                            "No fair! You're not supposed to know that!\nStop trying to derail the story!");
                     else
                         Terminal.WriteLine("He doesn't seem interested in you.");
                     return true;
@@ -50,12 +54,12 @@ namespace CandideTextAdventure.Chapter3to4
         }
     }
 
-    class EastRoad : Room
+    internal class EastRoad : Room
     {
         public EastRoad()
         {
             propername = "a road leading east";
-            Names.AddRange(new string[] {"east", "road leading east", "road"});
+            Names.AddRange(new[] {"east", "road leading east", "road"});
             Exits.Add(new NorthRoad());
         }
 
@@ -70,9 +74,10 @@ namespace CandideTextAdventure.Chapter3to4
         }
     }
 
-    class NorthRoad : Room
+    internal class NorthRoad : Room
     {
-        private bool spoken = false;
+        private bool spoken;
+
         public NorthRoad()
         {
             Items.Add(new James1());
@@ -81,6 +86,7 @@ namespace CandideTextAdventure.Chapter3to4
             Names.Add("road leading north");
             Exits.Add(new SouthRoad(this));
         }
+
         public override void Describe(bool isFirstEntry = false)
         {
             if (!spoken)
@@ -100,24 +106,25 @@ namespace CandideTextAdventure.Chapter3to4
         }
     }
 
-    class TwoFlorins : GenericItem
+    internal class TwoFlorins : GenericItem
     {
         public TwoFlorins()
             : base("two florins", "This is your only money in the world.", "florins", "money", "two florins")
         {
-            
         }
     }
 
-    class James1 : GenericItem
+    internal class James1 : GenericItem
     {
-        public James1():base("James the Anabaptist", "He looks very friendly.", "james", "james the anabaptist", "the anabaptist", "anabaptist") //fuck yeah params
+        public James1()
+            : base(
+                "James the Anabaptist", "He looks very friendly.", "james", "james the anabaptist", "the anabaptist",
+                "anabaptist") //fuck yeah params
         {
-            
         }
     }
 
-    class SouthRoad : Room
+    internal class SouthRoad : Room
     {
         public SouthRoad(NorthRoad r)
         {
@@ -129,7 +136,7 @@ namespace CandideTextAdventure.Chapter3to4
         }
     }
 
-    class WestRoad :Room
+    internal class WestRoad : Room
     {
         public WestRoad()
         {
@@ -139,15 +146,18 @@ namespace CandideTextAdventure.Chapter3to4
             Names.Add("road leading west");
         }
     }
-    
-    class Pangloss1 : GenericItem
+
+    internal class Pangloss1 : GenericItem
     {
         public Pangloss1()
-             : base("a grimy beggar", "This beggar seems awfully familiar. It is hard to tell through the layers of grime and sickness. I should give him some money.",
-                "beggar", "to beggar", "the beggar", "to the beggar", "the grimy beggar", "grimy beggar", "to the grimy beggar", "pangloss", "dr. pangloss", "doctor pangloss", "to pangloss",
-            "to doctor pangloss", "to dr. pangloss", "money to dr. pangloss")
+            : base(
+                "a grimy beggar",
+                "This beggar seems awfully familiar. It is hard to tell through the layers of grime and sickness. I should give him some money.",
+                "beggar", "to beggar", "the beggar", "to the beggar", "the grimy beggar", "grimy beggar",
+                "to the grimy beggar", "pangloss", "dr. pangloss", "doctor pangloss", "to pangloss",
+                "to doctor pangloss", "to dr. pangloss", "money to dr. pangloss")
         {
-            List<string> tmp = new List<string>();
+            var tmp = new List<string>();
             foreach (string s in (ValidNames))
             {
                 string t1 = s;
@@ -172,14 +182,16 @@ namespace CandideTextAdventure.Chapter3to4
                 case "speak":
                 case "talk":
                     if (attemptedname.Contains("pangloss"))
-                        Terminal.WriteLine("No fair! You're not supposed to know that!\nStop trying to derail the story!");
+                        Terminal.WriteLine(
+                            "No fair! You're not supposed to know that!\nStop trying to derail the story!");
                     else
                         Terminal.WriteLine("He cries out, \"Alms for the poor, young master?\"");
                     return true;
                 case "give":
                     Terminal.WriteLine("As you hand him you only money, he looks into your eyes.");
                     Terminal.WriteLine("\"Master Candide?!\" he exclaims, \"Don't you regognize me, Dr. Pangloss?!\"");
-                    Terminal.WriteLine("You take Dr. Pangloss to James and beg him to help Pangloss as he had helped you.");
+                    Terminal.WriteLine(
+                        "You take Dr. Pangloss to James and beg him to help Pangloss as he had helped you.");
                     Terminal.WriteLine("James does as you ask, and two months pass.");
                     Terminal.Pause();
                     Terminal.WriteLine();

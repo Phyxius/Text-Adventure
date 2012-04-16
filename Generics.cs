@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace CandideTextAdventure
 {
     internal class GenericItem : Item
     {
-        public string name;
         public string description;
+        public string name;
 
         public GenericItem(IEnumerable<string> identifiers, string name = "a generic item",
                            string description = "A generic item.")
@@ -22,7 +19,6 @@ namespace CandideTextAdventure
                            params string[] identifiers)
             : this(identifiers, name, description)
         {
-
         }
 
         public override string GetName()
@@ -45,7 +41,8 @@ namespace CandideTextAdventure
     {
         public string desc;
 
-        public GenericRoom(string name = "a generic room", string description = "You can go here.", params string[] names)
+        public GenericRoom(string name = "a generic room", string description = "You can go here.",
+                           params string[] names)
         {
             propername = name;
             desc = description;

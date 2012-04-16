@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CandideTextAdventure.Chapter22
+﻿namespace CandideTextAdventure.Chapter22
 {
     internal class ParisSquare : GenericRoom
     {
         private bool played;
+
         public ParisSquare()
             : base(
                 "a door to the city square", "You can go here.", "square", "city square", "the city square", "out",
@@ -23,7 +19,7 @@ namespace CandideTextAdventure.Chapter22
 
         public override void Describe(bool isFirstEntry = false)
         {
-            if(!played)
+            if (!played)
                 MusicSystem.MusicSystem.ChangeSong("Crusell_Clarinet_concerto_No.ogg");
             played = true;
             base.Describe(isFirstEntry);
@@ -124,9 +120,9 @@ namespace CandideTextAdventure.Chapter22
 
     internal class ParisAbbey : GenericRoom
     {
-        public static bool hasSlept = false;
-        public bool HasEntered = false;
-        private ParisBed bed;
+        public static bool hasSlept;
+        private readonly ParisBed bed;
+        public bool HasEntered;
 
         public ParisAbbey(ParisBed b, ParisSquare prev)
             : base("a small abbey", "You can go here.", "abbey", "small abbey", "a small abbey", "the small abbey")

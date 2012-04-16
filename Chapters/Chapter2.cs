@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CandideTextAdventure.Chapter3to4;
 
 namespace CandideTextAdventure.Chapter2
 {
-    class ChapterTwoBegin : Room
+    internal class ChapterTwoBegin : Room
     {
         public ChapterTwoBegin()
         {
@@ -16,14 +13,18 @@ namespace CandideTextAdventure.Chapter2
             Items.Add(new RoadSign());
             Exits.Add(new Inn(this));
         }
-        public override void  Describe(bool isFirstEntry = false)
+
+        public override void Describe(bool isFirstEntry = false)
         {
             Terminal.WriteLine(
                 "After your banishment from your earthly paradise of Castle Thunder-ten-tronckh, you wander the land without noticing where you are going.");
-            Terminal.WriteLine("Eventually, you drag yourself to the nearest town, where you hope to get something to soothe your aching hunger.");
-            Terminal.WriteLine("As you walk by the town's inn, you two men wearing blue uniforms call out to you from inside. They invite you to dine with them.");
+            Terminal.WriteLine(
+                "Eventually, you drag yourself to the nearest town, where you hope to get something to soothe your aching hunger.");
+            Terminal.WriteLine(
+                "As you walk by the town's inn, you two men wearing blue uniforms call out to you from inside. They invite you to dine with them.");
             base.Describe(isFirstEntry);
         }
+
         public override bool ExamineCommand()
         {
             Terminal.WriteLine("You see light streaming in from the door.");
@@ -31,18 +32,21 @@ namespace CandideTextAdventure.Chapter2
         }
     }
 
-    class RoadSign : GenericItem
+    internal class RoadSign : GenericItem
     {
-        public RoadSign() : base(new string[]{"sign", "roadsign", "road sign"}, "a road sign", "This sign says, \"Welcome to Wald-berghoff-trarbkdikdorff.\"")
+        public RoadSign()
+            : base(
+                new[] {"sign", "roadsign", "road sign"}, "a road sign",
+                "This sign says, \"Welcome to Wald-berghoff-trarbkdikdorff.\"")
         {
-            
         }
     }
 
-    class Inn : Room
+    internal class Inn : Room
     {
-        public bool isdead = false;
         public bool hasmug;
+        public bool isdead;
+
         public Inn(ChapterTwoBegin prev)
         {
             propername = "a door to a dingy inn";
@@ -71,27 +75,26 @@ namespace CandideTextAdventure.Chapter2
                                (hasmug ? "drink" : "dinner") + "!");
             return false;
         }
-
-        
     }
 
-    class MenInBlue : GenericItem
+    internal class MenInBlue : GenericItem
     {
         public MenInBlue()
             : base(
-                new string[] {"men", "men in blue", "blue-clad men", "men in blue uniforms", "blue-uniformed men"},
+                new[] {"men", "men in blue", "blue-clad men", "men in blue uniforms", "blue-uniformed men"},
                 "some men in blue uniforms", "These men look very stern looking. They are wearing spiffy blue uniforms."
                 )
         {
-            
         }
     }
 
-    class Mug : GenericItem
+    internal class Mug : GenericItem
     {
-        public Mug() :base(new string[]{"mug", "mug of beer", "beer", "mug full of frothy beer", "drink"}, "mug full of frothy beer", "This beer looks delicious!")
+        public Mug()
+            : base(
+                new[] {"mug", "mug of beer", "beer", "mug full of frothy beer", "drink"}, "mug full of frothy beer",
+                "This beer looks delicious!")
         {
-            
         }
 
         public override bool OnInteract(string command, string attemptedname)
@@ -105,20 +108,21 @@ namespace CandideTextAdventure.Chapter2
                     "The men immediately proceed to clap you in irons and whisk you away to be trained in the army.");
                 Terminal.Pause();
                 Terminal.WriteLine();
-                ((Inn)(Room.CurrentRoom)).isdead = true;
-                Room.ChangeRoom(new CandideTextAdventure.Chapter3to4.ChapterThreeBeginning());
+                ((Inn) (Room.CurrentRoom)).isdead = true;
+                Room.ChangeRoom(new ChapterThreeBeginning());
                 return true;
             }
             return base.OnInteract(command, attemptedname);
         }
     }
 
-    class Plate : GenericItem
+    internal class Plate : GenericItem
     {
-        public Plate() : base(new string[]{"plate", "dinnerplate", "plate of food","dinnerplate full of food", "food", "meal", "dinner"},
-            "a metal dinnerplate full of food", "This plate full of food looks delicious! I should eat it!")
+        public Plate()
+            : base(
+                new[] {"plate", "dinnerplate", "plate of food", "dinnerplate full of food", "food", "meal", "dinner"},
+                "a metal dinnerplate full of food", "This plate full of food looks delicious! I should eat it!")
         {
-            
         }
 
         public override bool OnInteract(string command, string attemptedname)

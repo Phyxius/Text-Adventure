@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 
 namespace CandideTextAdventure
 {
-    static class Terminal
+    internal static class Terminal
     {
         public static bool UseAnimation = true;
+
         public static void WriteLine(string message = "")
         {
             /*var rows = message.Split('\n');
@@ -30,21 +28,23 @@ namespace CandideTextAdventure
                 }
                 Console.WriteLine();
             }*/
-            Write(message  + "\n");
+            Write(message + "\n");
         }
+
         public static string ReadLine()
         {
             return Console.ReadLine();
         }
+
         public static void Write(string s)
         {
-            var rows = s.Split('\n');
+            string[] rows = s.Split('\n');
             for (int i = 0; i < rows.Length; i++)
             {
-                var words = rows[i].Split(' ');
-                for (int j = 0; j < words.Length; j++ )
+                string[] words = rows[i].Split(' ');
+                for (int j = 0; j < words.Length; j++)
                 {
-                    var word = words[j];
+                    string word = words[j];
                     if (Console.BufferWidth - (Console.CursorLeft + 1) < word.Length)
                         Console.WriteLine();
                     _Write(word);
@@ -55,7 +55,7 @@ namespace CandideTextAdventure
                         else _Write(" ");
                     }
                 }
-                if(i < rows.Length - 1)
+                if (i < rows.Length - 1)
                     Console.WriteLine();
             }
         }
@@ -72,19 +72,21 @@ namespace CandideTextAdventure
 
         public static ConsoleKeyInfo ReadKey(bool HideKeyPressed = true)
         {
-            var tmp = Console.ReadKey();
+            ConsoleKeyInfo tmp = Console.ReadKey();
             if (!HideKeyPressed)
                 return tmp;
-            if(tmp.Key != ConsoleKey.Enter)
+            if (tmp.Key != ConsoleKey.Enter)
                 Console.CursorLeft--;
             Console.Write(' ');
             Console.CursorLeft--;
             return tmp;
         }
+
         public static void Clear()
         {
             Console.Clear();
         }
+
         public static void Pause(string message = "Press any key to continue...")
         {
             Write(message);
@@ -93,7 +95,7 @@ namespace CandideTextAdventure
             WriteLine();
         }
 
-        public static void RestartFromLastCheckpoint<T>(params Item[] inventory) where T : Room,new()
+        public static void RestartFromLastCheckpoint<T>(params Item[] inventory) where T : Room, new()
         {
             MusicSystem.MusicSystem.ChangeSong("mario game over.ogg");
             WriteLine("Restart from last checkpoint?");
@@ -102,10 +104,10 @@ namespace CandideTextAdventure
             {
                 case "yes":
                 case "y":
-                    var tmp = new T();    
+                    var tmp = new T();
                     Room.ChangeRoom(tmp, true);
                     Room.Inventory.Clear();
-                    foreach(Item i in inventory)
+                    foreach (Item i in inventory)
                         Room.Inventory.Add(i);
                     return;
                 case "no":

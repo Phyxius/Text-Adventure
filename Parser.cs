@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
-using System.Text;
+using CandideTextAdventure.Chapter1;
 
 namespace CandideTextAdventure
 {
@@ -11,7 +9,7 @@ namespace CandideTextAdventure
     {
         public static void ParseInput(string input)
         {
-            var split = input.ToLower().Split(' ');
+            string[] split = input.ToLower().Split(' ');
             if (split[0].Length > 0 && split[0][0] == '!')
             {
                 if (split[0] == "!")
@@ -22,7 +20,7 @@ namespace CandideTextAdventure
                 switch (split[0].Substring(1))
                 {
                     case "quit":
-                        CandideTextAdventure.MainThread.ContinueRunning = false;
+                        MainThread.ContinueRunning = false;
                         return;
                     case "vol":
                         if (split.Count() == 1)
@@ -76,7 +74,7 @@ namespace CandideTextAdventure
                     Terminal.WriteLine("Examine {object}: investigate an object in the room");
                     Terminal.WriteLine("Look: look around the room and display what you see");
                     Terminal.WriteLine("Use {item}: use an item");
-                    Terminal.WriteLine("User {item} on {item}: Use an item on another item");
+                    Terminal.WriteLine("Use {item} on {item}: Use an item on another item");
                     Terminal.WriteLine("!pause: pause music");
                     Terminal.WriteLine("!play: resume music");
                     Terminal.WriteLine("!vol: displys the current music volume");
@@ -84,7 +82,7 @@ namespace CandideTextAdventure
                     Terminal.WriteLine("!scranim: toggle the text-scrolling animation");
                     Terminal.WriteLine("");
                     Terminal.WriteLine(
-                        "Remember, commands are not case-sensitive, and please avoid using 'the' where possible. (Also, you can't go to doors or people - that would be silly)" );
+                        "Remember, commands are not case-sensitive, and please avoid using 'the' where possible. (Also, you can't go to doors or people - that would be silly)");
 
                     return;
                     //do for save and load
@@ -99,9 +97,9 @@ namespace CandideTextAdventure
                 }
                 else if (split[0] == "inventory" || split[0] == "pack" || split[0] == "bag")
                 {
-                    if (CurrentRoom.GetType() == typeof (Chapter1.CandidesBedroom))
+                    if (CurrentRoom.GetType() == typeof (CandidesBedroom))
                     {
-                        if (CurrentRoom.Items.Contains(((Chapter1.CandidesBedroom) (CurrentRoom)).clothes))
+                        if (CurrentRoom.Items.Contains(((CandidesBedroom) (CurrentRoom)).clothes))
                         {
                             Terminal.WriteLine("You have nothing. Not even clothes on your back.");
                             return;
@@ -123,7 +121,6 @@ namespace CandideTextAdventure
                             Terminal.Write(Inventory[i].GetName() + ", ");
                         Terminal.WriteLine("and " + Inventory[Inventory.Count() - 1].GetName() + ".");
                     }
-
                 }
                 else DisplayBadCommandError();
             }
@@ -140,7 +137,7 @@ namespace CandideTextAdventure
                 }
                 target = target.Substring(0, target.Length - 1);
                 bool valid = false;
-                Room selected = new Room();
+                var selected = new Room();
                 foreach (Room r in CurrentRoom.Exits)
                     if (r.Names.Contains(target))
                     {
@@ -161,7 +158,6 @@ namespace CandideTextAdventure
                     {
                         target += split[i] + " ";
                     }
-
                 }
                 else
                 {

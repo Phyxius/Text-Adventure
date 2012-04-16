@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace CandideTextAdventure
 {
     internal class InfoDumpRoom : Room
     {
-        private Dictionary<InfoDumpPainting, bool> paintings = new Dictionary<InfoDumpPainting, bool>();
-        private Room next;
-        private string ending, desc;
+        private readonly string desc;
+        private readonly string ending;
+        private readonly Room next;
+        private readonly Dictionary<InfoDumpPainting, bool> paintings = new Dictionary<InfoDumpPainting, bool>();
 
-        public InfoDumpRoom(IEnumerable<InfoDumpPainting> list, Room nextroom, string endingmessage = "You feel yourself being sucked through a magical portal...", string OpeningDescription = "Blah.")
+        public InfoDumpRoom(IEnumerable<InfoDumpPainting> list, Room nextroom,
+                            string endingmessage = "You feel yourself being sucked through a magical portal...",
+                            string OpeningDescription = "Blah.")
         {
             foreach (InfoDumpPainting p in list)
                 paintings.Add(p, false);
@@ -64,20 +64,19 @@ namespace CandideTextAdventure
             Terminal.WriteLine(desc);
             base.Describe(isFirstEntry);
         }
-
-
     }
 
     internal class InfoDumpPainting : Item
     {
         private readonly string description;
-        private string name;
+        private readonly string name;
+
         public InfoDumpPainting(string name, string description, params string[] usernames)
         {
             this.description = description;
             this.name = name;
             ValidNames.Add(name.ToLower());
-            foreach(string username in usernames)
+            foreach (string username in usernames)
             {
                 ValidNames.Add("painting of " + username.ToLower());
                 ValidNames.Add("a painting of " + username.ToLower());
@@ -118,6 +117,7 @@ namespace CandideTextAdventure
             Room.CurrentRoom.Items.Remove(this);
             return true;
         }
+
         public override bool AttemptedSingleUse()
         {
             Terminal.WriteLine("You use it on itself");
@@ -133,6 +133,7 @@ namespace CandideTextAdventure
             }
             return false;
         }
+
         public override bool AttemptedDoubleItemUse(Item target)
         {
             Terminal.WriteLine("You use it.");
@@ -140,12 +141,11 @@ namespace CandideTextAdventure
         }
     }
 
-    class TestUsable : Item
+    internal class TestUsable : Item
     {
         public TestUsable(string name = "usable")
         {
             ValidNames.Add(name);
         }
-        
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CandideTextAdventure.Chapter11;
-using CandideTextAdventure.Chapter19;
+﻿using CandideTextAdventure.Chapter19;
 
 namespace CandideTextAdventure.Chapter16
 {
@@ -25,9 +20,9 @@ namespace CandideTextAdventure.Chapter16
                 "Eventually you stumble across a road. As you begin to follow it, the paving stones steadily transition from stone into pure gold. Rubies and other gems begin to be seen simply lying on the ground.");
             Terminal.WriteLine(
                 "Cacambo begins to collect them, until he fills a huge sack, which he gives to you to carry.");
-            Room.Inventory.Add(new GenericItem("a sack full of gems",
-                                               "This sack is filled to the brim with priceless treasures.", "sack",
-                                               "sack filled with gems", "sack full of gems"));
+            Inventory.Add(new GenericItem("a sack full of gems",
+                                          "This sack is filled to the brim with priceless treasures.", "sack",
+                                          "sack filled with gems", "sack full of gems"));
             Terminal.Pause();
             Terminal.WriteLine(
                 "Eventually, you come upon a villiage, where you can hear a large crowd inside a building.");
@@ -38,7 +33,7 @@ namespace CandideTextAdventure.Chapter16
         }
     }
 
-    class ElDoradoEntrance : GenericRoom
+    internal class ElDoradoEntrance : GenericRoom
     {
         public ElDoradoEntrance() : base("a door leading outside", "You can go here.", "outside")
         {
@@ -47,11 +42,11 @@ namespace CandideTextAdventure.Chapter16
         }
     }
 
-    class RoadSign2 : GenericItem
+    internal class RoadSign2 : GenericItem
     {
-        public RoadSign2() : base("a road sign", "This road sign reads, \"Welcome to El Dorado, City of Gold!\"", "sign", "road sign")
+        public RoadSign2()
+            : base("a road sign", "This road sign reads, \"Welcome to El Dorado, City of Gold!\"", "sign", "road sign")
         {
-            
         }
     }
 
@@ -63,13 +58,15 @@ namespace CandideTextAdventure.Chapter16
                 "This skull is made of pure crystal. A plaque next to it reads, \"This is a monument to the Interdimensional Beings who helped us build our city.\"\nScrawled on the side of the plinth in English is a message reading, \"Indy was here!\"",
                 "monument", "skull", "crystal skull")
         {
-
         }
     }
 
-    class Inn2 : GenericRoom
+    internal class Inn2 : GenericRoom
     {
-        public Inn2(Room prev)  : base("an inn", "You can hear rowdy laughter and unintelligible speach emanating from inside.", "inn", "inside", "inside inn")
+        public Inn2(Room prev)
+            : base(
+                "an inn", "You can hear rowdy laughter and unintelligible speach emanating from inside.", "inn",
+                "inside", "inside inn")
         {
             Items.Add(new PlateAgain());
             Exits.Add(prev);
@@ -83,20 +80,20 @@ namespace CandideTextAdventure.Chapter16
 
         public override bool AttemptedExit(Room target)
         {
-            if(target.GetType() == typeof(ElDoradoIntermission))
+            if (target.GetType() == typeof (ElDoradoIntermission))
                 return true;
             Terminal.WriteLine("Wait! You haven't finished your dinner!");
             return false;
         }
     }
 
-    class PlateAgain : GenericItem
+    internal class PlateAgain : GenericItem
     {
         public PlateAgain()
-            : base(new string[] { "plate", "dinnerplate", "plate of food", "dinnerplate full of food", "food", "meal", "dinner" },
+            : base(
+                new[] {"plate", "dinnerplate", "plate of food", "dinnerplate full of food", "food", "meal", "dinner"},
                 "a metal dinnerplate full of food", "This plate full of food looks delicious! I should eat it!")
         {
-
         }
 
         public override bool OnInteract(string command, string attemptedname)
@@ -119,7 +116,7 @@ namespace CandideTextAdventure.Chapter16
         }
     }
 
-    class ElDoradoIntermission : Room
+    internal class ElDoradoIntermission : Room
     {
         public override void OnEnter()
         {
@@ -136,26 +133,30 @@ namespace CandideTextAdventure.Chapter16
         }
     }
 
-    class PalaceRoad : GenericRoom
+    internal class PalaceRoad : GenericRoom
     {
-        public PalaceRoad()  : base("a road", "You can go here.", "road", "south")
+        public PalaceRoad() : base("a road", "You can go here.", "road", "south")
         {
             Exits.Add(new PalaceFoyer());
         }
     }
 
-    class PalaceFoyer : GenericRoom
+    internal class PalaceFoyer : GenericRoom
     {
-        public PalaceFoyer() :  base("the entrance to the Palace", "You can go here.", "palace", "entrance", "entrance to the palace", "the entrance", "the entrance to the palace")
+        public PalaceFoyer()
+            : base(
+                "the entrance to the Palace", "You can go here.", "palace", "entrance", "entrance to the palace",
+                "the entrance", "the entrance to the palace")
         {
             Items.Add(new KingStatue());
             Items.Add(new SignForTheUmpteenthTime());
             Exits.Add(new Palace());
         }
 
-        public override void  Describe(bool isFirstEntry = false)
+        public override void Describe(bool isFirstEntry = false)
         {
-            Terminal.WriteLine("When you walk into the palace's foyer, a guard approaches you and says, \"The King of El Dorado would like to see you whenever you are ready.\"");
+            Terminal.WriteLine(
+                "When you walk into the palace's foyer, a guard approaches you and says, \"The King of El Dorado would like to see you whenever you are ready.\"");
             Terminal.WriteLine("The guard then walks back to his post outside that palace.");
             base.Describe(isFirstEntry);
         }
@@ -170,30 +171,35 @@ namespace CandideTextAdventure.Chapter16
                 "statue", "golden statue", "large golden statue", "a large golden statue", "large statue", "gold statue",
                 "large gold statue")
         {
-
         }
     }
 
-    class SignForTheUmpteenthTime : GenericItem
+    internal class SignForTheUmpteenthTime : GenericItem
     {
-        public SignForTheUmpteenthTime() : base("a sign", "This sign reads, \"The Spanish have conquered most of Latin America, but thankfully not our city. Their biggest two reasons for conquering our neighbors is an attempt to spread their religion, and to loot our riches.\"", 
-            "sign", "a sign")
+        public SignForTheUmpteenthTime()
+            : base(
+                "a sign",
+                "This sign reads, \"The Spanish have conquered most of Latin America, but thankfully not our city. Their biggest two reasons for conquering our neighbors is an attempt to spread their religion, and to loot our riches.\"",
+                "sign", "a sign")
 
         {
-            
         }
     }
 
-    class Palace : GenericRoom
+    internal class Palace : GenericRoom
     {
-        public Palace() : base("the entrance to the King's Audience Room", "You can go here.", "palace", "entrance", "entrance to the audience room", "the audience room", "the entrance to the audience room", "audience room")
+        public Palace()
+            : base(
+                "the entrance to the King's Audience Room", "You can go here.", "palace", "entrance",
+                "entrance to the audience room", "the audience room", "the entrance to the audience room",
+                "audience room")
         {
-            
         }
 
         public override void OnEnter()
         {
-            Terminal.WriteLine("You enter the King's Audience Room and meet with the king, who tells you all about this strange city.");
+            Terminal.WriteLine(
+                "You enter the King's Audience Room and meet with the king, who tells you all about this strange city.");
             Terminal.WriteLine(
                 "Eventually, he gives you quarters in the palace, where you stay for some time, enjoying the comforts of the city.");
             Terminal.Pause();
@@ -203,11 +209,13 @@ namespace CandideTextAdventure.Chapter16
             Terminal.WriteLine(
                 "You go to the king and tell him this. He has his best engineers design for you a device with which to leave his secluded city.");
             Terminal.Pause();
-            Terminal.WriteLine("When the device is completed, the King gives you a flock of red sheep laden with gold and diamonds to help you on your journey.");
-            Terminal.WriteLine("You use the device and again wander through the jungle. You eventually come to a city, after losing all but a few of your sheep.");
+            Terminal.WriteLine(
+                "When the device is completed, the King gives you a flock of red sheep laden with gold and diamonds to help you on your journey.");
+            Terminal.WriteLine(
+                "You use the device and again wander through the jungle. You eventually come to a city, after losing all but a few of your sheep.");
             Terminal.Pause();
             Terminal.WriteLine("You decide to find a ship to deliver you to Buenos Aires.");
-            Room.ChangeRoom(new Chapter19Start());
+            ChangeRoom(new Chapter19Start());
         }
     }
 }

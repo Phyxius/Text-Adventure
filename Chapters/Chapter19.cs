@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CandideTextAdventure.Chapter22;
+﻿using CandideTextAdventure.Chapter22;
 
 namespace CandideTextAdventure.Chapter19
 {
@@ -27,7 +23,6 @@ namespace CandideTextAdventure.Chapter19
                 "a shabby-looking sign", "This sign says, \"Welcome to Surinam!\"", "sign", "roadsign",
                 "shabby road sign", "road sign", "shabby road sign")
         {
-
         }
     }
 
@@ -98,17 +93,17 @@ namespace CandideTextAdventure.Chapter19
         }
     }
 
-    class SecondInn : GenericRoom
+    internal class SecondInn : GenericRoom
     {
         public SecondInn() : base("an inn", "The captain of the ship said to meet him here.", "inn")
         {
-            
         }
 
         public override void Describe(bool isFirstEntry = false)
         {
             Terminal.WriteLine("As you walk into the inn, the captain of the ship jovially calls you to his table.");
-            Terminal.WriteLine("You tell him your story, and how you wish to go to Buenos Aires to be with your beloved Lady Cunegonde");
+            Terminal.WriteLine(
+                "You tell him your story, and how you wish to go to Buenos Aires to be with your beloved Lady Cunegonde");
             Terminal.WriteLine(
                 "The captain regretfully informs you that he cannot aide you in your quest, as Lady Cunegonde is the favored consort of the governor of Buenos Aires, and he will have you hanged for trying to take her away.");
             Terminal.WriteLine(
@@ -119,7 +114,8 @@ namespace CandideTextAdventure.Chapter19
             Terminal.Pause();
             Terminal.WriteLine(
                 "Whilst on your journey to Venice, you meet a man named Martin, who claims to be the last Manichean in the world.");
-            Terminal.WriteLine("in order to pass the time on your voyage, you engage in philosophical banter with Martin, who is adamantly convinced that God has abandoned the world to the control of a malevolent power");
+            Terminal.WriteLine(
+                "in order to pass the time on your voyage, you engage in philosophical banter with Martin, who is adamantly convinced that God has abandoned the world to the control of a malevolent power");
             Terminal.WriteLine("On a whim, Martin and you decide to stop in Paris.");
             Terminal.Pause();
             Inventory.Clear();

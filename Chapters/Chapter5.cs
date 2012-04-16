@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CandideTextAdventure.Chapter11;
 
 namespace CandideTextAdventure.Chapter5to10
 {
-    class Chapter5Begin : Room
+    internal class Chapter5Begin : Room
     {
-        private bool hastried = false;
+        private bool hastried;
+
         public Chapter5Begin()
         {
-            Exits.AddRange(new Room[] {new WestRoad(), new SouthRoad(), new NorthRoad(), new EastRoad(),new WhippingPlatform(), });
+            Exits.AddRange(new Room[]
+                               {
+                                   new WestRoad(), new SouthRoad(), new NorthRoad(), new EastRoad(), new WhippingPlatform()
+                                   ,
+                               });
             Items.Add(new CharredCorpse());
             Items.Add(new Guard());
         }
@@ -37,7 +40,7 @@ namespace CandideTextAdventure.Chapter5to10
 
         public override bool AttemptedExit(Room target)
         {
-            if (target.GetType() == typeof(WhippingPlatform) || target.GetType() == typeof(Chapter5Begin))
+            if (target.GetType() == typeof (WhippingPlatform) || target.GetType() == typeof (Chapter5Begin))
                 return true;
             if (!hastried)
             {
@@ -52,31 +55,32 @@ namespace CandideTextAdventure.Chapter5to10
         }
     }
 
-    class Guard : GenericItem
+    internal class Guard : GenericItem
     {
         public Guard() : base("a guard", "He looks very stern.", "guard", "a guard")
         {
-            
         }
     }
 
-    class CharredCorpse : GenericItem
+    internal class CharredCorpse : GenericItem
     {
         public CharredCorpse() : base("a charred corpse", "He's dead, Jim.", "corpse", "charred corpse", "jew")
         {
-            
         }
     }
 
-    class WhippingPlatform : GenericRoom
+    internal class WhippingPlatform : GenericRoom
     {
-        public WhippingPlatform() : base("a whipping platform", "It looks scary. I've been told to go here.", "whipping platform", "the whipping platform", "platform")
+        public WhippingPlatform()
+            : base(
+                "a whipping platform", "It looks scary. I've been told to go here.", "whipping platform",
+                "the whipping platform", "platform")
         {
             Exits.Add(new SecondWestRoad());
             Items.Add(new Sword());
         }
 
-        public override void  Describe(bool isFirstEntry = false)
+        public override void Describe(bool isFirstEntry = false)
         {
             if (isFirstEntry)
             {
@@ -88,21 +92,23 @@ namespace CandideTextAdventure.Chapter5to10
         }
     }
 
-    class Sword : GenericItem
+    internal class Sword : GenericItem
     {
-        public Sword() : base("a sword lying on the ground", "This sword looks very sharp. It might come in handy later.", "sword", "sword lying on the ground")
+        public Sword()
+            : base(
+                "a sword lying on the ground", "This sword looks very sharp. It might come in handy later.", "sword",
+                "sword lying on the ground")
         {
-            
         }
 
         public override bool AttemptedDoubleItemUse(Item target)
         {
-            if (target.GetType() == typeof(Jew))
+            if (target.GetType() == typeof (Jew))
             {
                 Room.ParseInput("stab jew");
                 return true;
             }
-            if (target.GetType() == typeof(Inquisitor))
+            if (target.GetType() == typeof (Inquisitor))
             {
                 Room.ParseInput("stab inquisitor");
                 return true;
@@ -120,47 +126,43 @@ namespace CandideTextAdventure.Chapter5to10
         }
     }
 
-    class NorthRoad : GenericRoom
+    internal class NorthRoad : GenericRoom
     {
-        public NorthRoad() : base("a road leading North","You can go here." , "north", "north road")
+        public NorthRoad() : base("a road leading North", "You can go here.", "north", "north road")
         {
-            
         }
     }
 
-    class SouthRoad : GenericRoom
+    internal class SouthRoad : GenericRoom
     {
         public SouthRoad() : base("a road leading South", "You can go here.", "south", "south road")
         {
-            
         }
     }
 
-    class EastRoad : GenericRoom
+    internal class EastRoad : GenericRoom
     {
         public EastRoad() : base("a road leading East", "You can go here.", "east", "east road")
         {
-            
         }
     }
 
-    class WestRoad : GenericRoom
+    internal class WestRoad : GenericRoom
     {
-        public WestRoad() : base ("a road leading West", "You can go here.", "west", "west road")
+        public WestRoad() : base("a road leading West", "You can go here.", "west", "west road")
         {
-            
         }
     }
 
-    class SecondWestRoad : GenericRoom
+    internal class SecondWestRoad : GenericRoom
     {
         public Item antagonist = new Item();
-        public SecondWestRoad() :base("a road leading West", "You can go here.", "west", "west road")
+
+        public SecondWestRoad() : base("a road leading West", "You can go here.", "west", "west road")
         {
             antagonist = (new SecondFoodPlate());
             Items.Add(antagonist);
             Exits.Add(new Outside());
-            
         }
 
         public override void Describe(bool isFirstEntry = false)
@@ -175,18 +177,19 @@ namespace CandideTextAdventure.Chapter5to10
 
         public override bool AttemptedExit(Room target)
         {
-            if(target.GetType() == typeof(Chapter11Start))
+            if (target.GetType() == typeof (Chapter11Start))
                 return true;
-            var t = antagonist.GetType();
-            if (t == typeof(SecondFoodPlate))
+            Type t = antagonist.GetType();
+            if (t == typeof (SecondFoodPlate))
                 Terminal.WriteLine("Wait! You haven't finished your dinner!");
-            else if (t == typeof(Inquisitor))
+            else if (t == typeof (Inquisitor))
             {
-                Terminal.WriteLine("As you turn your back on the Inquisitor to leave, he stabs you, shouting \"Our major weapon is big pointy swords! And surprise!\"");
+                Terminal.WriteLine(
+                    "As you turn your back on the Inquisitor to leave, he stabs you, shouting \"Our major weapon is big pointy swords! And surprise!\"");
                 Terminal.WriteLine("You die.");
                 Terminal.RestartFromLastCheckpoint<Chapter5Begin>();
             }
-            else if (t == typeof(Jew))
+            else if (t == typeof (Jew))
             {
                 Terminal.WriteLine("As you turn your back on the Jew to leave, he stabs you.");
                 Terminal.WriteLine("You die.");
@@ -197,17 +200,19 @@ namespace CandideTextAdventure.Chapter5to10
         }
     }
 
-    class SecondFoodPlate : GenericItem
+    internal class SecondFoodPlate : GenericItem
     {
-        public SecondFoodPlate() :base("a plate piled high with delicious food", "This plate looks delicious! I should eat it!", "plate", "dinnerplate", "plate of food","dinnerplate full of food", "food", "meal", "dinner",
-            "a metal dinnerplate full of food")
+        public SecondFoodPlate()
+            : base(
+                "a plate piled high with delicious food", "This plate looks delicious! I should eat it!", "plate",
+                "dinnerplate", "plate of food", "dinnerplate full of food", "food", "meal", "dinner",
+                "a metal dinnerplate full of food")
         {
-            
         }
 
         public override bool OnInteract(string command, string attemptedname)
         {
-            if (command == "eat" || command == "finish") 
+            if (command == "eat" || command == "finish")
             {
                 if (attemptedname == "plate" || attemptedname == "dinnerplate" || attemptedname == "plate full of food")
                 {
@@ -220,7 +225,8 @@ namespace CandideTextAdventure.Chapter5to10
                 Terminal.WriteLine("You eat the food.");
                 Terminal.WriteLine("After everyone is finished the veiled woman unveils herself.");
                 Terminal.WriteLine("It is your Lady Cunegonde!");
-                Terminal.WriteLine("You ask her what happened to her. She tells of how she was raped, enslaved, and sold to a Jew, who shares her with the Grand Inquisitor.");
+                Terminal.WriteLine(
+                    "You ask her what happened to her. She tells of how she was raped, enslaved, and sold to a Jew, who shares her with the Grand Inquisitor.");
                 Terminal.WriteLine("You tell Lady Cunegonde your story. As you finish, the High Inquisitor walks in.");
                 Terminal.WriteLine(
                     "He sees you and goes into a fit of rage, screaming, \"I have to share her with you too? I'd rather kill you!\"");
@@ -234,19 +240,22 @@ namespace CandideTextAdventure.Chapter5to10
         }
     }
 
-    class Outside : GenericRoom
+    internal class Outside : GenericRoom
     {
-        public Outside() : base("a door leading outside", "Sunlight streams in from open door.", "outside", "door leading outside")
+        public Outside()
+            : base("a door leading outside", "Sunlight streams in from open door.", "outside", "door leading outside")
         {
-            
         }
     }
 
-    class Inquisitor : GenericItem
+    internal class Inquisitor : GenericItem
     {
-        public Inquisitor() : base("the High Inquisitor of Lisbon", "He looks very angry.", "inquisitor", "high inquisitor", "the high inquisitor", "the inquisitor")
+        public Inquisitor()
+            : base(
+                "the High Inquisitor of Lisbon", "He looks very angry.", "inquisitor", "high inquisitor",
+                "the high inquisitor", "the inquisitor")
         {
-            List<string> tmp = new List<string>();
+            var tmp = new List<string>();
             foreach (string s in ValidNames)
             {
                 tmp.Add("with " + s);
@@ -289,19 +298,21 @@ namespace CandideTextAdventure.Chapter5to10
         }
     }
 
-    class InquisitorCorpse : GenericItem
+    internal class InquisitorCorpse : GenericItem
     {
         public InquisitorCorpse() : base("the Inquisitor's corpse", "He's dead, Jim.", "corpse", "inquisitor's corpse")
         {
-            
         }
     }
 
-    class Jew : GenericItem
+    internal class Jew : GenericItem
     {
-        public Jew() : base("an enraged Jew", "He seems enraged. He is also wearing a funny hat.","jew", "enraged jew", "the jew", "the enraged jew")
+        public Jew()
+            : base(
+                "an enraged Jew", "He seems enraged. He is also wearing a funny hat.", "jew", "enraged jew", "the jew",
+                "the enraged jew")
         {
-            List<string> tmp = new List<string>();
+            var tmp = new List<string>();
             foreach (string s in ValidNames)
             {
                 tmp.Add("with " + s);
@@ -333,8 +344,10 @@ namespace CandideTextAdventure.Chapter5to10
                     Terminal.WriteLine("You stab him. He dies.");
                     Terminal.WriteLine(
                         "The old lady suggests that the group run away before someone realizes that you killed two men. Everyone agrees, and you run away to the port.");
-                    Terminal.WriteLine("Once at the port, Cunegonde notices that her jewels and money have been stolen, and you thus have no way of buying a fare.");
-                    Terminal.WriteLine("Instead, you enlist in the Portuguese army as a captain, and set sail for the New World, with Cunegonde and the old woman in tow.");
+                    Terminal.WriteLine(
+                        "Once at the port, Cunegonde notices that her jewels and money have been stolen, and you thus have no way of buying a fare.");
+                    Terminal.WriteLine(
+                        "Instead, you enlist in the Portuguese army as a captain, and set sail for the New World, with Cunegonde and the old woman in tow.");
                     Terminal.Pause();
                     Room.ChangeRoom(new Chapter11Start());
                     return true;

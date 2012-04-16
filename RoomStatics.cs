@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CandideTextAdventure
 {
-    partial class Room
+    internal partial class Room
     {
         public static Room CurrentRoom = new Room();
+
         public static void ChangeRoom(Room newRoom, bool force = false)
         {
             if (!force && !CurrentRoom.AttemptedExit(newRoom))
@@ -15,6 +14,7 @@ namespace CandideTextAdventure
             CurrentRoom = newRoom;
             newRoom.Describe(true);
         }
+
         public static void ListItems(Room room)
         {
             if (room.Items.Count == 0)
@@ -27,8 +27,8 @@ namespace CandideTextAdventure
                 Terminal.WriteLine("and " + room.Items[room.Items.Count - 1].GetName() + ".");
             }
             else Terminal.WriteLine(room.Items[0].GetName() + ".");
-
         }
+
         public static void ListExits(Room room)
         {
             if (room.Exits.Count == 0)
@@ -41,9 +41,9 @@ namespace CandideTextAdventure
                 Terminal.WriteLine("and " + room.Exits[room.Exits.Count - 1].GetName() + ".");
             }
             else Terminal.WriteLine(room.Exits[0].GetName() + ".");
-
         }
-        static void DisplayBadCommandError(ErrorType type = ErrorType.General)
+
+        private static void DisplayBadCommandError(ErrorType type = ErrorType.General)
         {
             string[] potentials;
             switch (type)
@@ -55,26 +55,35 @@ namespace CandideTextAdventure
                     potentials = new[] {"What is that?", "I don't see that!"};
                     break;
                 case ErrorType.InvalidLocation:
-                    potentials = new string[] {"Where?", "I can't go there!"};
+                    potentials = new[] {"Where?", "I can't go there!"};
                     break;
                 case ErrorType.InvalidUse:
-                    potentials = new string[]
+                    potentials = new[]
                                      {"How am I supposed to do that?", "I'm sorry Dave, I'm afraid I can't do that."};
                     break;
                 case ErrorType.InvalidSingleUse:
-                    potentials = new string[]{"On what?"};
+                    potentials = new[] {"On what?"};
                     break;
                 case ErrorType.General:
                 default:
-                    potentials = new string[] {"Now you're just talking nonsense!", "What?"};
+                    potentials = new[] {"Now you're just talking nonsense!", "What?"};
                     break;
             }
             Terminal.WriteLine(potentials[new Random().Next(potentials.Count())]);
         }
 
-        enum ErrorType
+        #region Nested type: ErrorType
+
+        private enum ErrorType
         {
-            InvalidUse, InvalidLocation, General, InvalidItem, InvalidGrab, InvalidSingleUse
+            InvalidUse,
+            InvalidLocation,
+            General,
+            InvalidItem,
+            InvalidGrab,
+            InvalidSingleUse
         }
+
+        #endregion
     }
 }

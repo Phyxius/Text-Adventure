@@ -1,23 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
+using System.Windows.Forms;
 using SFML.Audio;
 
 namespace CandideTextAdventure.MusicSystem
 {
     internal static class MusicSystem
     {
-        private static MusicRedirect[] musicRedirects;
+        private static readonly MusicRedirect[] musicRedirects;
         public static string MusicDirectory;
         private static bool Switch;
-        public static float Volume { get; private set; }
-        public static bool IsPlaying { get; private set; }
-        public static string LastSong { get; private set; }
+
         static MusicSystem()
         {
-            MusicDirectory = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) +
+            MusicDirectory = Path.GetDirectoryName(Application.ExecutablePath) +
                              "\\music\\";
             Volume = 100;
             LastSong = "NONE";
@@ -27,6 +25,10 @@ namespace CandideTextAdventure.MusicSystem
                 musicRedirects[i] = new MusicRedirect();
             }
         }
+
+        public static float Volume { get; private set; }
+        public static bool IsPlaying { get; private set; }
+        public static string LastSong { get; private set; }
 
         public static void ChangeSong(string Filename)
         {
@@ -39,7 +41,7 @@ namespace CandideTextAdventure.MusicSystem
             musicRedirects[i2].Play();
             Switch = !Switch;
             IsPlaying = true;
-            if(Filename.ToLower() == "mario game over.ogg")
+            if (Filename.ToLower() == "mario game over.ogg")
                 musicRedirects[i2].Loop = false;
             LastSong = Filename;
         }
@@ -48,7 +50,7 @@ namespace CandideTextAdventure.MusicSystem
         {
             foreach (MusicRedirect m in musicRedirects)
             {
-                if(m.Status == SoundStatus.Playing)
+                if (m.Status == SoundStatus.Playing)
                     m.Pause();
             }
             IsPlaying = false;
@@ -71,14 +73,15 @@ namespace CandideTextAdventure.MusicSystem
                 m.Volume = Volume;
         }
 
+        #region Nested type: MusicRedirect
+
         private class MusicRedirect : Music
         {
-            
             public MusicRedirect(string filename)
                 : base(MusicDirectory + filename)
             {
                 Loop = true;
-                this.Volume = MusicSystem.Volume;
+                Volume = MusicSystem.Volume;
             }
 
             public MusicRedirect()
@@ -113,12 +116,14 @@ namespace CandideTextAdventure.MusicSystem
             private static void _stop(object obj)
             {
                 var m = (Music) obj;
-                for (float i = m.Volume-1; i > 0; i--)
+                for (float i = m.Volume - 1; i > 0; i--)
                 {
                     m.Volume = i;
                     Thread.Sleep(50);
                 }
             }
         }
+
+        #endregion
     }
 }

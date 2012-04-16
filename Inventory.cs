@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace CandideTextAdventure
 {
-    partial class Room
+    internal partial class Room
     {
         public static List<Item> Inventory = new List<Item>();
     }
