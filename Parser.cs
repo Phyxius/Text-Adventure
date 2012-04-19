@@ -7,6 +7,7 @@ namespace CandideTextAdventure
 {
     internal partial class Room
     {
+        private static bool DebugMode = false;
         public static void ParseInput(string input)
         {
             string[] split = input.ToLower().Split(' ');
@@ -61,6 +62,49 @@ namespace CandideTextAdventure
                         Terminal.WriteLine("Invalid command.");
                         return;
                 }
+            }
+            if (DebugMode && split[0].Length > 0 && split[0][0] == '#')
+            {
+                if (split[0] == "#")
+                {
+                    Terminal.WriteLine("Invalid debug command. Are you sure you know what you are doing?");
+                    return;
+                }
+                switch(split[0].Substring(1))
+                {
+                    case "goto":
+                        try
+                        {
+                            var types = System.Reflection.Assembly.GetExecutingAssembly().GetTypes();
+                            Type obj = null;
+                            foreach (Type t in types)
+                            {
+                                if (t.Name.ToLower() != split[1].ToLower())
+                                    continue;
+                                obj = t;
+                                break;
+                            }
+                            Room r = (Room)obj.GetConstructor(new Type[0]).Invoke(new object[0]);
+                            Room.ChangeRoom(r, true);
+                        }
+                        catch (Exception e)
+                        {
+                            Terminal.WriteLine("Whoops! Error of type " + e.GetType().Name + " occured.");
+                        }
+                        break;
+                    case "rooms":
+                        foreach (Type t in System.Reflection.Assembly.GetExecutingAssembly().GetTypes())
+                        {
+                            if (!t.IsSubclassOf(typeof(Room)) || t.GetConstructors().Select(c => c.GetParameters().Any()).Contains(true))
+                                continue;
+                            Terminal.WriteLine(t.Name);
+                        }
+                        break;
+                    default:
+                        Terminal.WriteLine("Invalid debug command! Are you sure you know what you are doing?");
+                        break;
+                }
+                return;
             }
             if (split.Count() == 1)
             {
@@ -121,6 +165,11 @@ namespace CandideTextAdventure
                             Terminal.Write(Inventory[i].GetName() + ", ");
                         Terminal.WriteLine("and " + Inventory[Inventory.Count() - 1].GetName() + ".");
                     }
+                }
+                else if (split[0] == "xyzzy")
+                {
+                    DebugMode = !DebugMode;
+                    Terminal.WriteLine("Debug mode " + (DebugMode ? "on" : "off") + ". Be carful...");
                 }
                 else DisplayBadCommandError();
             }

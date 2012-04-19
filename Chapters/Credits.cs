@@ -27,6 +27,7 @@ namespace CandideTextAdventure.Chapters
             str += Math.Round(tmp.TotalHours) + ":" + tmp.Minutes + ":" + tmp.Seconds;
             credits.Add(str);
             credits.Add("Thanks for Playing!");
+            
             foreach (string s in credits)
             {
                 Console.Clear();

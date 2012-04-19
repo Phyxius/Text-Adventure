@@ -89,6 +89,10 @@ namespace CandideTextAdventure
 
         public static void Pause(string message = "Press any key to continue...")
         {
+            while (Console.KeyAvailable)
+            {
+                Console.ReadKey(true);
+            }
             Write(message);
             ReadKey();
             WriteLine();
