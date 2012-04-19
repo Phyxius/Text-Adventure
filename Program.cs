@@ -10,7 +10,7 @@ namespace CandideTextAdventure
 
         private static void Main(string[] args)
         {
-            Console.Title = "Candide: Text Adventure Edition";
+            Console.Title = "Candide: Text Adventure Edition by Shea and Paul";
             MusicSystem.MusicSystem.ChangeSong("Allemande.ogg");
             Terminal.WriteLine(
                 "Welcome to Candide: Text Adventure Edition!");
