@@ -72,14 +72,7 @@ namespace CandideTextAdventure
 
         public static ConsoleKeyInfo ReadKey(bool HideKeyPressed = true)
         {
-            ConsoleKeyInfo tmp = Console.ReadKey();
-            if (!HideKeyPressed)
-                return tmp;
-            if (tmp.Key != ConsoleKey.Enter)
-                Console.CursorLeft--;
-            Console.Write(' ');
-            Console.CursorLeft--;
-            return tmp;
+            return Console.ReadKey(HideKeyPressed);
         }
 
         public static void Clear()

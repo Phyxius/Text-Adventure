@@ -169,7 +169,7 @@ namespace CandideTextAdventure
                 else if (split[0] == "xyzzy")
                 {
                     DebugMode = !DebugMode;
-                    Terminal.WriteLine("Debug mode " + (DebugMode ? "on" : "off") + ". Be carful...");
+                    Terminal.WriteLine("Debug mode " + (DebugMode ? "on" : "off") + ". Be careful...");
                 }
                 else DisplayBadCommandError();
             }
